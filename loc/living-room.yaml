@@ -1,0 +1,32 @@
+main: 
+  title: Living Room
+  look: |
+    The morning sun gave me hope that today would be warm, but there's no comfort to be found in this little peasants home. [Whispers of wind](#look/whispers) seem to creak through the house but the air is still, hanging with a [thick stench](#look/smell).
+  
+    A hazy beam of bluish light shines from the [open window](#look/shutters) on the [wreckage](#look/wreckage) of last night's incident.
+  
+    The [Father](#talk/father) stands near the door.
+  
+shutters: 
+  title: Shutters
+  look: | 
+    The shutters have been thrown wide to let in the morning light but in here the sun shines as through smoked glass. Shadows seem to flicker as if cast from some unseen candle and clouds of gnats dance in the smokey sunbeam.
+  
+wreckage: 
+  title: Wreckage
+  look: |
+    Straw mats, tables, pillows, and food are strewn about the living room. Apparently there was an altercation at dinner last night, and by altercation I mean tornado. At the center of the tornado is a very sad little girl, tied to the [support beam](#move/support-beam) of the house.
+  
+smell: 
+  title: Stench
+  look: |
+    The house reeks of blood, sweat, and rot. There's a hint of some incense that's tried to fight it, but it's obviously losing the battle.
+  
+whispers: 
+  title: Whispers
+  look: |
+    The whispers murmer threats at me but I can't make out what they're saying. 
+
+father: |
+  title: Father
+  look: "He's an older man, almost old enough to be a grandparent."

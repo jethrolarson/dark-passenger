@@ -1,0 +1,4 @@
+{
+	"data": {{data}},
+	"methods":{{methods}}
+}

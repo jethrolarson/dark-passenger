@@ -1,0 +1,27 @@
+body{background:#5A535F;}
+body.loading *{cursor: wait;}
+#page{
+  width: 550px;
+  margin:48px auto; padding: 24px;
+  background: #FFF3DF;}
+  
+dialog{
+  position: absolute;top:80px; left: 50%;
+  width: 400px;
+  margin-left: -200px;
+  background:#FFF;
+  -moz-box-shadow: rgba(0,0,0,.4) 4px 8px 10px;}
+  dialog header{
+    margin: 12px;
+    border-bottom: 1px solid #ddd;}
+    dialog h2{margin:0;
+      font-size: 20px;}
+  .close{
+    display:block;
+    float:right;
+    padding: 0 5px;
+    border: 1px solid #ddd;
+    text-decoration:none;
+		cursor: pointer;}
+  .dialogBody{margin: 12px;}
+  
