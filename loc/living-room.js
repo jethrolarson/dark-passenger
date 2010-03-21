@@ -1,1 +1,0 @@
-{"init":function(){console.log("init.living-room")}}
