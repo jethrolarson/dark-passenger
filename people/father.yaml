@@ -1,0 +1,72 @@
+main: |
+  - <dt>Father</dt>
+    <dd>So?</dd>
+
+  - <dt>Bill</dt>
+    <dd>Huh?</dd>
+
+  - <dt>Father</dt>
+    <dd>Can you help her?</dd>
+  
+  - He points to a young girl tied to the central support beam of the house. She's probably seven or eight years old. Her robes are shredded and caked in dirt and blood. She's sobbing softly in an exhausted kind of way.
+  
+  - Should I ask the father about her [condition](#living-room/talk/father/condition) or just [examine her](#living-room/look/girl)
+
+
+girl: |
+  "Let me get a closer look." I say. I approach and bend down. I've seen people go crazy before so I'm not too worried. She seems [pretty calm](?q=examine-girl) at the moment.
+  
+examine-girl: |
+  I reach toward her. Zoom to her face. Her eyes go crazy. She looses a hand and claws at Bill, scratching the back of his hand.
+
+  Bill jumps back, grabs his hand. The Father dives on the girls arm ad manages to retie it.
+
+  
+  HAHAHAHA! I told you this wasn't mundane.
+
+    Bill
+  Insanity doesn't mean she's possessed. We haven't ruled out rabies.
+
+    Father
+  What are rabies?
+
+    Bill
+  It's a ailment caused by...animal bites.
+
+    DP
+  You're going to want sake.
+
+    Bill
+  Why? It's not even noon yet
+ 
+    DP
+  For your hand.
+
+    Bill
+  It's just a scratch--
+  We see POV of his hand, a little black bubble is there.
+
+  Bill pokes it and it erupts with a hundred black baby spiders. They pour down his arm and fall to the floor in a mess if tiny webs. He screams and tries to shake them off. The girl screeches with evil laughter.
+
+    Bill
+  Sake! Please!
+
+  The Father dashes out of the room. Comes back with a ceramic bottle and unstops it. Bill takes a big chug and chokes.
+
+    DP
+  No, on your hand, moron.
+
+  Bill pours a bunch on his wound and winces at sting.
+
+    DP
+  Though I don't mind the sake.
+
+  After a few seconds of heavy breathing he takes another swig from the bottle, then sighs. The spiders have disappeared.
+
+    Bill
+  Alright, you have my...attention.
+
+    DP
+  Well, look around, we don't know anything about this demon yet.
+
+  Player gains control.

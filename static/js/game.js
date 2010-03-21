@@ -1,52 +1,69 @@
-function Game(state){
-	this.title="Dark Passenger";
-	this.$title=$("#title");
-	this.$content=$("#content");
-	this.$dialogs = $("#dialogs");
-	this.$locations = $("#locations");
-	this.$inventory = $("#inventory");
-	this.$people=$("#people");
-	
-	this.locations={};
-	this.people={};
-	this.inventory={};
-	this.curLocName = "";
-	if(state){
-		this.loadGame(state);
-	}else{
-		this.newGame(); 
+/* Utils */
+function lookupOb(ob,arr){
+	var result = ob;
+	for(var i=0;i<arr.length;i++){
+		result = result[arr[i]];
+		if(result === undefined){
+			return undefined;
+		}
 	}
-	this.addEvents();
+	return result;
 }
-Game.prototype.look=function(name){
-	var loc = this.locations[this.curLocName];
-	Dialog(loc.data[name]);
-	return false;
+
+
+/*: Game object #constructor */
+var game = {
+	title:"Dark Passenger",
+	$title:$("#title"),
+	$content:$("#content"),
+	$dialogs : $("#dialogs"),
+	$locations : $("#locations"),
+	$inventory : $("#inventory"),
+	$people:$("#people"),
+	locations:{},
+	people:{},
+	inventory:{},
+	curLocName : "",
+	curLoc:null,
+	init: function(){
+		this.newGame(); 
+		this.addEvents();
+	},
+	newGame: function(){
+		this.move("intro");
+	}
 };
-Game.prototype.move=function(name){
+game.move = function(name){
 	if(!this.locations[name]){
-		this.locations[name] = new Location(name);		
+		this.locations[name] = new Location(name);
 	}
 	this.curLocName=name;
+	this.curLoc = this.locations[name];
 	this.render();	
 };
-Game.prototype.talk=function(name){
-	alert("TODO add talk functionality")
+
+game.loadContent = function(locationName,lookupArray){
+	if(this.curLocName!=locationName){
+		this.move(locationName,lookupArray);
+	}else{
+		var data = lookupOb(this.curLoc.data,lookupArray);
+		Dialog(data);
+	}
 };
 
-Game.prototype.addEvents = function(){
+game.addEvents = function(){
 	var that=this;
 	$("#content, dialogs").delegate("a","click",function(){
 		if(this.hash){
-			var match = this.hash.match(/^#([^\/$]+)\/(.+)/);//TODO accept extra arguments?
-			controller = match[1];
-			name = match[2];
-			return that[controller](name);//Security hole?
+			var match = (/^#([^\/]+)(?:\/([^\/]+))*/).exec(this.hash);//Parse object lookups.
+			var locationName = match[1];
+			var lookupArray = match.slice(2);
+			return that.loadContent(locationName,lookupArray);//Security hole?
 		}
 	});
 };
 
-Game.prototype.render=function(){
+game.render=function(){
 	var loc = this.locations[this.curLocName],
 			readyCheck = null,
 			timer = 0,
@@ -56,7 +73,7 @@ Game.prototype.render=function(){
 			clearInterval(readyCheck);
 			document.title = loc.data.main.title+" - "+that.title;
 			that.$title.text(loc.data.title);
-			that.$content.html(loc.look());
+			that.$content.html(that.parseContent(loc.data.main.content));
 			that.renderMenu("locations");
 			that.renderMenu("people");
 			return;
@@ -70,7 +87,7 @@ Game.prototype.render=function(){
 	readyCheck = setInterval(_render,500);
 	
 };
-Game.prototype.renderMenu = function(name){
+game.renderMenu = function(name){
 	HTML ="";
 	$.each(this[name],function(k,v){
 		if(v.visible){
@@ -80,9 +97,14 @@ Game.prototype.renderMenu = function(name){
 	this['$'+name].html(HTML);
 };
 
-Game.prototype.newGame = function(){
-	this.move("intro");
+
+game.parseContent = function(txt){
+	txt = tmpl(txt)(this);
+	txt = converter.makeHtml(txt);
+	return txt;
 };
+
+
 
 /* Dialog
 **********/
@@ -91,11 +113,11 @@ function Dialog(data){
 		'<dialog>\
 			<header>\
 				<a class="close" title="close">X</a>\
-				<h2>'+data.title+'</h2>\
+				'+(data.title?'<h2>'+data.title+'</h2>':'')+'\
 			</header>\
-			<div class="dialogBody">'+converter.makeHtml(data.look)+'</div>\
+			<div class="dialogBody">'+game.parseContent(data.content)+'</div>\
 		</dialog>')
-		//.draggable()
+		.draggable()
 		.appendTo(document.body);
 	dialog.find('.close').click(function(){
 		dialog.remove();
@@ -112,34 +134,14 @@ function Location(name){
 	//:Loads Location scripts and data via AJAX
 	var that = this;
 	$.getScript("/"+name,function(response){
-		response = eval("("+response+")");
-		that.data = response.data;
-		that.methods = response.methods;
-		that.methods.init();
+		response = $.parseJSON(response);
+		that.data = response;
 		that.ready = true;
 	});
 }
-Location.prototype.look=function(){
-	return converter.makeHtml(this.data["main"].look);
-};
-
-
-
-/* Item
-********/
-function Item(data){
-	this.data = data;
-}
-Item.prototype.examine = function(){
-	return this.look;//TODO Convert to html from markdown
-};
-//Item.use
-//Item.combine
-
 
 var converter = new Showdown.converter();
 
-var game = null;
 $(function(){
-	game = new Game();//TODO enable loading from cookie/session
+	game.init();//TODO enable loading from cookie/session
 });

@@ -1,10 +1,9 @@
-title: ""
 main: 
-  look: |
-    I see abused peasants make arcane gestures and invocations at the samurai daily hoping their curses will stick. But anyone that's actually been cursed wouldn't wish one on their worst enemies. At least I wouldn't.
+  content: |
+    This morning I saw an angry merchant try to curse a samurai. The merchants face twisted in a scowl as he muttered some incantation. It's a blessing that few people know any real curses.  Anyone that's actually been cursed wouldn't wish one on their worst enemies. I know I wouldn't.
   
     Dark Passenger
-    ==============
+    ====
     by <http://bloodybits.com>
     
-    [ > Dark beginning](#move/living-room)
+    <a href="#living-room"> &gt; Dark beginning</a>

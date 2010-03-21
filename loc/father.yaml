@@ -10,7 +10,9 @@ main: |
   The little girl's clothes are shredded. Her sleves are caked in dirt and blood. She's growling and screeching in tongues. has crazy eyes, jagged teeth and sharpened claws.
 
 girl: |
-  "Let me get a closer look." I say. I approach and bend down. I'd seen people go crazy before so I'm not too worried. She seems [pretty calm](?q=examine-girl) at the moment.
+  "Let me get a closer look." I say. I approach and bend down.
+  I'd seen people go crazy before so I'm not too worried. She seems 
+  [pretty calm](?q=examine-girl) at the moment.
   
 examine-girl: |
   I reach toward her. Zoom to her face. Her eyes go crazy. She looses a hand and claws at Bill, scratching the back of his hand.

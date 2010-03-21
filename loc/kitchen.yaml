@@ -1,5 +1,5 @@
-main: |
-  Kitchen yeah...
+main: 
+  content: Kitchen yeah...
   
 counter: 
   title: Counter
