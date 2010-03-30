@@ -3,8 +3,6 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 from google.appengine.ext.webapp import template
 
-template.register_template_library('util.customfilters')
-
 import controllers.game
 
 def main():

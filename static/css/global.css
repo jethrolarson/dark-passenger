@@ -1,4 +1,4 @@
-body{background:#5A535F;}
+body{background:#5A535F; font: 16px georgia, serif;}
 body.loading *{cursor: wait;}
 #page{
   width: 550px;

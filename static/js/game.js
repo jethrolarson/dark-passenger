@@ -53,12 +53,18 @@ game.loadContent = function(locationName,lookupArray){
 
 game.addEvents = function(){
 	var that=this;
-	$("#content, dialogs").delegate("a","click",function(){
-		if(this.hash){
+	$("#content, #dialogs").delegate("a","click",function(){
+		var $this = $(this);
+		if($this.hasClass("next")){
+			
+		}else if($this.hasClass("prev")){
+			
+		}
+		else if(this.hash){
+			var lookupArray = this.hash.slice(1).split("/");
 			var match = (/^#([^\/]+)(?:\/([^\/]+))*/).exec(this.hash);//Parse object lookups.
-			var locationName = match[1];
-			var lookupArray = match.slice(2);
-			return that.loadContent(locationName,lookupArray);//Security hole?
+			var locationName = lookupArray[0];
+			return that.loadContent(locationName,lookupArray.slice(1));//Security hole?
 		}
 	});
 };
@@ -81,7 +87,7 @@ game.render=function(){
 		timer++;
 		if(timer>5){
 			clearInterval(readyCheck);
-			alert("Location timed out while loading");
+			console.log("error","Location timed out while loading");
 		}
 	}
 	readyCheck = setInterval(_render,500);
@@ -104,21 +110,39 @@ game.parseContent = function(txt){
 	return txt;
 };
 
-
+//TODO: Add save cache system
+game.cache = {
+	get: function(){
+		
+	},
+	set: function(){
+		
+	}
+}
+var cache = {};
 
 /* Dialog
 **********/
 function Dialog(data){
+	var content = data.content; 
+	if($.isArray(data.content)){
+		content = content[0];
+	}
+	content = game.parseContent(content)
 	var dialog = $(
 		'<dialog>\
 			<header>\
 				<a class="close" title="close">X</a>\
 				'+(data.title?'<h2>'+data.title+'</h2>':'')+'\
 			</header>\
-			<div class="dialogBody">'+game.parseContent(data.content)+'</div>\
+			<div class="dialogBody">'+content+'</div>\
+			<footer>\
+				<a class="prev" href="#prev">prev</a>\
+				<a class="next" href="#next">next</a>\
+			</footer>\
 		</dialog>')
 		.draggable()
-		.appendTo(document.body);
+		.appendTo("#dialogs");
 	dialog.find('.close').click(function(){
 		dialog.remove();
 	});
