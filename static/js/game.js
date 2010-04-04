@@ -168,4 +168,19 @@ var converter = new Showdown.converter();
 
 $(function(){
 	game.init();//TODO enable loading from cookie/session
+	var $dialog = $("#zoom").each(function(){
+		var $this = $(this);
+		var $content = $this.find(".content");
+		var $prev = $this.find(".prev").click(function(){
+			$this.trigger("prev");
+			return false;
+		});
+		var $next = $this.find(".next").click(function(){
+			$this.trigger("next");
+			return false;
+		});
+		$this.find(".close").click(function(){
+			$dialog.hide();
+		});
+	});
 });

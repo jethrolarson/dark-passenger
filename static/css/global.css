@@ -1,11 +1,18 @@
-body{background:#5A535F; font: 16px georgia, serif;}
+a{color: #999;}
+a:visited{color:#666;}
+a:hover{color: #fff;}
+html,body{height:100%;}
+body{
+	background:#111; font: 16px georgia, serif;
+	color: #999;}
 body.loading *{cursor: wait;}
 #page{
-  width: 550px;
-  margin:48px auto; padding: 24px;
-  background: #FFF3DF;}
+  width: 550px; height:100%;
+  margin:0 auto; padding: 24px;box-sizing:border-box;
+  background: #191919;}
   
 dialog{
+	display:none;
   position: absolute;top:80px; left: 50%;
   width: 400px;
   margin-left: -200px;
