@@ -110,6 +110,9 @@ intro:
         
           <p><code>"<a href="#demonicon">The Demonicon</a> is your friend.</code>"<%cache.demonicon_on="true";game.inventory.update;%>
         
+        
+###################crap below
+
   'support-beam': 
     title: Support Beam
     content: | 
@@ -117,3 +120,81 @@ intro:
 
       There are scratches around the base of the pole where the girl has been
       trying to get free and blood has soaked into the wood.
+    
+    hiro: | 
+      Hiro: 
+      So?
+      
+      BILL
+      Huh?
+      
+      Hiro:
+      Can you help her?
+      The little girl's clothes are shredded. Her sleves are caked in dirt and blood. She's growling and screeching in tongues. has crazy eyes, jagged teeth and sharpened claws.
+
+    girl: |
+      "Let me get a closer look." I say. I approach and bend down.
+      I'd seen people go crazy before so I'm not too worried. She seems 
+      [pretty calm](?q=examine-girl) at the moment.
+
+    'examine-girl': |
+      I reach toward her. Zoom to her face. Her eyes go crazy. She looses a hand and claws at Bill, scratching the back of his hand.
+
+      Bill jumps back, grabs his hand. The Hiro: dives on the girls arm ad manages to retie it.
+
+      DARK PASSENGER(DP)
+      HAHAHAHA! I told you this wasn't mundane.
+
+      BILL
+      Insanity doesn't mean she's possessed. We haven't ruled out rabies.
+
+      Hiro:
+      What are rabies?
+
+      BILL
+      It's a ailment caused by...animal bites.
+
+      DP
+      You're going to want sake.
+
+      BILL
+      Why? It's not even noon yet
+
+      DP
+      For your hand.
+
+      BILL
+      It's just a scratch--
+      We see POV of his hand, a little black bubble is there.
+
+      Bill pokes it and it erupts with a hundred black baby spiders. They pour down his arm and fall to the floor in a mess if tiny webs. He screams and tries to shake them off. The girl screeches with evil laughter.
+
+      BILL
+      Sake! Please!
+
+      Hiro dashes out of the room. Comes back with a ceramic bottle and unstops it. Bill takes a big chug and chokes.
+
+      DP
+      No, on your hand, moron.
+
+      Bill pours a bunch on his wound and winces at sting.
+
+      DP
+      Though I don't mind the sake.
+
+      After a few seconds of heavy breathing he takes another swig from the bottle, then sighs. The spiders have disappeared.
+
+      BILL
+      Alright, you have my...attention.
+
+      DP
+      Well, look around, we don't know anything about this demon yet.
+      
+bedroom:
+  content: |
+    The family sleeps together in this small room. There's bedrolls on the floor, and writings hanging on the wall, presumably from some religious text.
+
+    There's a portrait on the wall of some ancestor, it's very old. The painting seems to look at you.
+    EXAMINE shows close up and VIEW BACK option. The back shows the back of the person. There is otherwise nothing special.
+
+    There's a small table on one side of the room. On it is some incense that you can pick up. DP says he hates jasmine as you pick it up. Obove the table is a mirror facing the door. EXAMINE Shows the reflection. In it is a strange doll with a damaged arm. You can grab the doll through the mirror.
