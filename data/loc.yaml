@@ -1,0 +1,119 @@
+intro:
+  content: |
+    This morning I saw an angry merchant mutter an incantation at a beligerant ronin. It's a blessing that few people know any real curses. Anyone that's actually been cursed wouldn't wish one on their worst enemies. I know I wouldn't.
+  
+    Dark Passenger
+    ==============
+
+    by Jethro Larson
+
+    > [Dark beginning](#living-room)
+
+#######
+
+'living-room': 
+  title: Living Room
+  content: |
+    The morning sun gave me hope that today would be warm, but there's no 
+    comfort to be found in this little peasants home. 
+    [Whispers of wind](#living-room/whispers) seem to creak through the 
+    house but the air is still, hanging with a 
+    [thick stench](#living-room/smell).
+  
+    A hazy beam of bluish light shines from the 
+    [open window](#living-room/shutters) on the [wreckage](#living-room/wreckage) of 
+    last night's incident.
+    
+    <%if(cache.father_in_living_room==="true"){%>
+    The father, [hiro](#living-room/hiro), stands near the door.
+    <%}%>
+  
+  shutters: 
+    title: Open window
+    content: | 
+      The shutters have been thrown wide to let in the morning light but in 
+      here the sun shines as through smoked glass. Shadows seem to flicker as 
+      if cast from some unseen candle and a cloud of gnats dance in the 
+      smokey sunbeam.
+  
+  wreckage: 
+    title: Wreckage
+    content: |
+      Straw mats, tables, pillows, and dishes are strewn about the living room. 
+      "What a mess." I look around the chaos. "I'm guessing the incident 
+      happened at dinner time?"
+    
+      "Yes. Just before sunset yesterday." [Hiro](/#living-room/hiro) answers. <% cache.father_in_living_room = "true"; game.location.render(); %>
+  
+  smell: 
+    title: Stench
+    content: |
+      The house reeks of blood, sweat, and rot. There's a hint of some 
+      incense that's tried to fight it, but it's obviously losing the battle.
+  
+  whispers:
+    content: |
+      The whispers almost sound like voices but I can't make out what 
+      they're saying. Whatever it is, it definately isn't nice.
+     
+  hiro:
+    title: Hiro
+    content: |
+      Hiro came to me late last night claiming that his daughter was possessed.
+      This seems to be the default diagnosis for every malady on Mue.<%cache.mue_on="true";%> 
+      The last "possession" I had to deal with turned out to be chicken pox.
+     
+      Still, his daughter had bit him on the neck and that's more than enough 
+      to warrant an examination. 6 hours later he's still holding a 
+      [bloody rag](#living-room/hiro/bloody-rag) against the wound.
+    
+    "bloody-rag":
+      title: Bloody Rag
+      content: |
+        The blood hass a yellowish tinge like iodine, but I really doubt 
+        that it is.
+      
+        <%if(cache.bloody_rag_examined==="true"){%>
+        Jin thinks the yellowing has started, whatever that means.
+        <%}else{cache.bloody_rag_examined = "true";%>
+        "How you holding up?" I ask.
+    
+        "Not well. I can't stop the bleeding." A pained, exhausted 
+        look crosses his face as he glances toward the rag.
+    
+        "`Oh wow, the yellowing, I'm so excited. He'll be lots of fun 
+        tonight.`", Jin says
+    
+        "Oh? What happens then?" I ask.
+    
+        Hiro gives me a confused look. I keep forgetting that no one else can 
+        hear Jin.
+        "I guess eventually I'll die," Hiro says. Jin laughs in my head. "Maybe you would like to 
+        [take a look at it](#living-room/hiro/wound)?" Hiro asks in a 
+        sarcastic way.
+      
+        <%}%>
+    wound: 
+      content: |
+        I nod and step forward. As I approach him I realize where the smell 
+        of rot is coming from. It's like a combination of dead horse 
+        and tooth decay. I choke back the urge to vomit and make a weak 
+        attempt to hold my breath. 
+      
+        Hiro pulls the rag off the wound. I flinch and almost try to stop him but then I'm hit with the sight of it. A fist sized area of his neck is just meat, and not good meat. It's like some kind of abominable afterbirth, veiny and raw. It's actively weeping the strange iodine-like fluid. 
+      
+        Should I take a sample, or [ask Jin](#living-room/hiro/wound/jin)?
+      
+      jin: 
+        content: |
+          "Lord what are we dealing with here?" I ask, directing my question at Jin.
+        
+          <p><code>"<a href="#demonicon">The Demonicon</a> is your friend.</code>"<%cache.demonicon_on="true";game.inventory.update;%>
+        
+  'support-beam': 
+    title: Support Beam
+    content: | 
+      There's a central support where the girl is tied.
+
+      There are scratches around the base of the pole where the girl has been
+      trying to get free and blood has soaked into the wood.

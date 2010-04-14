@@ -1,14 +1,53 @@
-{% extends "master.html" %}
-{%block scripts%}
-<script src="/static/js/tmpl.js"></script>
-<script src="/static/js/showdown.min.js"></script>
-<script src="/static/js/ui/jquery.ui.core.js"></script>
-<script src="/static/js/ui/jquery.ui.widget.js"></script>
-<script src="/static/js/ui/jquery.ui.mouse.js"></script>
-<script src="/static/js/ui/jquery.ui.draggable.js"></script>
-<script src="/static/js/game.js"></script>
-{%endblock%}
-
-
-
-
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title id="page_title">Dark Passenger</title>
+  <link rel="stylesheet" href="/static/css/css-reset.css"/>
+  <link rel="stylesheet" href="/static/css/css-set.css"/>
+  <link rel="stylesheet" href="/static/css/global.css"/>
+  {%block css%}{%endblock%}
+  <!--[if IE]>
+  <script src="js/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div id="page">
+    <div id="body">
+      <h1 id="title">{%block heading %}{%endblock%}</h1>
+      <div id="content">{%block canvas%}{%endblock%}</div>
+      <menu>
+        <div id="inventory">
+          <script type="text/tmpl" id="inventory_tmpl">
+          <%if(cache.demonicon_on==="true"){%>
+            <a href="#demonicon">The Demonicon</a>
+          <%}%>
+          </script>
+        </div>
+        <div id="locations"></div>
+        <div id="people"></div>
+      </menu>
+      <div id="dialogs">
+        <dialog id="zoom">
+          <header>
+            <a class="close" title="close">X</a>
+            <h2>Title</h2>
+          </header>
+          <content>content</content>
+          <footer>
+            <a class="prev" href="#prev">prev</a>
+            <a class="next" href="#next">next</a>
+          </footer>
+        </dialog>
+      </div>
+    </div>
+  </div>
+  <script src="/static/js/jquery-1.4.2.js"></script>
+  <!--<script src="/static/js/jquery.history.js"></script>-->
+  <script src="/static/js/tmpl.js"></script>
+  <script src="/static/js/showdown.min.js"></script>
+  <script src="/static/js/game.js"></script>
+  <script src="/loc?callback=location_load"></script>
+  {%block scripts%}{%endblock%}
+</body>
+</html>

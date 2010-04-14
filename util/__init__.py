@@ -7,7 +7,11 @@ def render(rh,viewPath,data):
   
 def renderJSON(rh,data):
   rh.response.headers['Content-Type'] = 'application/json'
-  rh.response.out.write(simplejson.dumps(data))
+  rh.response.out.write(simplejson.dumps(data, indent=2))
+  
+def renderJSONP(rh,data):
+  rh.response.headers['Content-Type'] = 'application/javascript'
+  rh.response.out.write(rh.request.get("callback")+"("+simplejson.dumps(data, indent=2)+")")
   
 def isAjax(rh):
   try:

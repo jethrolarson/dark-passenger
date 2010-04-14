@@ -1,10 +1,13 @@
-a{color: #999;}
-a:visited{color:#666;}
-a:hover{color: #fff;}
+a{color: #7F5F63; text-decoration:none;}
+a:visited{color:#6F5357;}
+a:hover{color: #AF5763;text-decoration:underline;}
+
+code{color:#8F77EF;}
+
 html,body{height:100%;}
 body{
-	background:#111; font: 16px georgia, serif;
-	color: #999;}
+  background:#111; font: 16px georgia, serif;
+  color: #999;}
 body.loading *{cursor: wait;}
 #page{
   width: 550px; height:100%;
@@ -12,23 +15,41 @@ body.loading *{cursor: wait;}
   background: #191919;}
   
 dialog{
-	display:none;
+  display:none;
   position: absolute;top:80px; left: 50%;
   width: 400px;
   margin-left: -200px;
-  background:#FFF;
-  -moz-box-shadow: rgba(0,0,0,.4) 4px 8px 10px;}
+  background:#222;
+  -moz-border-radius: 12px;
+  -moz-box-shadow: #000 0 0 40px;}
   dialog header{
-    margin: 12px;
-    border-bottom: 1px solid #ddd;}
-    dialog h2{margin:0;
+    padding: 6px;
+    border-bottom: 1px solid #444;}
+    dialog h2{
+      margin:0 6px;
       font-size: 20px;}
   .close{
     display:block;
     float:right;
     padding: 0 5px;
-    border: 1px solid #ddd;
-    text-decoration:none;
-		cursor: pointer;}
-  .dialogBody{margin: 12px;}
+    color:#1d1d1d;
+    text-shadow:#444 1px 1px 1px;
+    font-size: 20px;
+    cursor: pointer;}
+  .close:hover{text-decoration:none; color:#222;}
+  dialog content{margin: 12px;}
+  dialog footer{display:none;}
+  
+/*clearfix*/
+section:after,
+dialog:after,
+header:after,
+footer:after,
+content:after{
+  content: '.';
+  display:block;
+  clear:both;
+  height: 0;
+  visibility:hidden;
+}
   
