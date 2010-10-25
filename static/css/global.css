@@ -4,16 +4,16 @@ a:hover{color: #AF5763;text-decoration:underline;}
 
 code{color:#8F77EF;}
 
-html,body{height:100%;}
+html,body{min-height:100%;}
 body{
-  background:#111; font: 16px georgia, serif;
+  background:#111; font: 16px/1.4 georgia, serif;
   color: #999;}
 body.loading *{cursor: wait;}
 #page{
-  width: 550px; height:100%;
+  width: 550px; min-height:100%;
   margin:0 auto; padding: 24px;box-sizing:border-box;
   background: #191919;}
-  
+  #content{min-height: 600px;}
 dialog{
   display:none;
   position: absolute;top:80px; left: 50%;

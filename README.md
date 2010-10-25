@@ -1,1 +1,2 @@
-Source for the html adventure game I'm building.
+Source for Dark Passenger, an interactive fiction.
+

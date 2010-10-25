@@ -13,7 +13,7 @@ class Data(webapp.RequestHandler):
     if re.match(r"[a-z]+", loc) != None: 
       f=open('data/'+loc+'.yaml') #FIXME security vulnerability
       data = yaml.load(f)
-      util.renderJSONP(self,data)
+      util.renderJSON(self,data)
     else:
       util.error(404,"Not a valid, or even present resource")
 

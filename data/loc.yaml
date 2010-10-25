@@ -7,7 +7,7 @@ intro:
 
     by Jethro Larson
 
-    > [Dark beginning](#living-room)
+    > [Continue...](#living-room)
 
 #######
 
@@ -15,7 +15,7 @@ intro:
   title: Living Room
   content: |
     The morning sun gave me hope that today would be warm, but there's no 
-    comfort to be found in this little peasants home. 
+    comfort to be found in this little farm house. 
     [Whispers of wind](#living-room/whispers) seem to creak through the 
     house but the air is still, hanging with a 
     [thick stench](#living-room/smell).
@@ -24,7 +24,7 @@ intro:
     [open window](#living-room/shutters) on the [wreckage](#living-room/wreckage) of 
     last night's incident.
     
-    <%if(cache.father_in_living_room==="true"){%>
+    <%if(typeof cache.father_in_living_room !=="undefined" && cache.father_in_living_room){%>
     The father, [hiro](#living-room/hiro), stands near the door.
     <%}%>
   
@@ -43,7 +43,7 @@ intro:
       "What a mess." I look around the chaos. "I'm guessing the incident 
       happened at dinner time?"
     
-      "Yes. Just before sunset yesterday." [Hiro](/#living-room/hiro) answers. <% cache.father_in_living_room = "true"; game.location.render(); %>
+      "Yes. Just before sunset yesterday." [Hiro](/#living-room/hiro) answers. <% cache.father_in_living_room = "true";%>
   
   smell: 
     title: Stench
@@ -73,9 +73,15 @@ intro:
         The blood hass a yellowish tinge like iodine, but I really doubt 
         that it is.
       
-        <%if(cache.bloody_rag_examined==="true"){%>
+        <%if(cache.bloody_rag_examined){%>
         Jin thinks the yellowing has started, whatever that means.
+        
+        I <a href="#living-room/hiro/hiro-status">remember the conversation</a> well.
         <%}else{cache.bloody_rag_examined = "true";%>
+        I should probably [see how he's doing](#living-room/hiro/hiro-status).
+        <%}%>
+    'hiro-status':
+      content: |
         "How you holding up?" I ask.
     
         "Not well. I can't stop the bleeding." A pained, exhausted 
@@ -91,8 +97,6 @@ intro:
         "I guess eventually I'll die," Hiro says. Jin laughs in my head. "Maybe you would like to 
         [take a look at it](#living-room/hiro/wound)?" Hiro asks in a 
         sarcastic way.
-      
-        <%}%>
     wound: 
       content: |
         I nod and step forward. As I approach him I realize where the smell 
@@ -102,15 +106,48 @@ intro:
       
         Hiro pulls the rag off the wound. I flinch and almost try to stop him but then I'm hit with the sight of it. A fist sized area of his neck is just meat, and not good meat. It's like some kind of abominable afterbirth, veiny and raw. It's actively weeping the strange iodine-like fluid. 
       
-        Should I take a sample, or [ask Jin](#living-room/hiro/wound/jin)?
+        Should I [take a sample](#living-room/hiro/wound/sample), or [ask Jin](#living-room/hiro/wound/jin)?
       
       jin: 
         content: |
-          "Lord what are we dealing with here?" I ask, directing my question at Jin.
+          "Hell, what are we dealing with here?" I ask, directing my question at Jin.
         
-          <p><code>"<a href="#demonicon">The Demonicon</a> is your friend.</code>"<%cache.demonicon_on="true";game.inventory.update;%>
-        
-        
+          `"Don't you have a scroll for this?"`
+          
+          I [consider the scroll](#demonicon/intro).
+      sample: 
+        content: |
+          I pull a vile from my satchel and collect a couple drops of the yellowish fluid. It has about the same consistency as mucus. 
+          `What do you think you're going to do with that?`
+          
+          I'm not really sure at the moment. It could just be puss, but I don't have the tools to be sure. 
+          
+          `"Don't you have a scroll for this?"`
+          
+          I [consider the scroll](#demonicon/intro).
+demonicon:
+  title: Demonicon
+  content: |
+    It's an ancient scroll of demon origin. There is a cryptic seal at the top but otherwise it is blank.
+    
+    [Ask a question](#demonicon/question)
+    
+  question:
+    content: |
+      I pause to consider my question carefully. The scroll demands blood in exchange for knowledge and I'd like to keep as much of mine as possible.
+      
+      TODO Here will be a list of available questions.
+  intro:
+    content: |
+      <%cache.demonicon_on="true";%>
+      I pull the scroll from my bag and remove it from it's rater plain canister. My hands are shaking a little. I've only used the scroll once and it was an experience I'd rather forget.
+      
+      "I don't suppose you have a clue what's happening, do you?" 
+      
+      Hiro shakes his head.
+      
+      "Damn." I put Hiro's rag back on his shoulder. "Excuse me a moment". I step aside to a table and [examine the scroll](#demonicon).
+      
 ###################crap below
 
   'support-beam': 
@@ -198,3 +235,4 @@ bedroom:
     EXAMINE shows close up and VIEW BACK option. The back shows the back of the person. There is otherwise nothing special.
 
     There's a small table on one side of the room. On it is some incense that you can pick up. DP says he hates jasmine as you pick it up. Obove the table is a mirror facing the door. EXAMINE Shows the reflection. In it is a strange doll with a damaged arm. You can grab the doll through the mirror.
+    
