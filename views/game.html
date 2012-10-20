@@ -10,40 +10,28 @@
   <!--[if IE]>
   <script src="js/html5.js"></script>
   <![endif]-->
+
+  <!--
+    Hackers look here
+    /README.md
+  -->
 </head>
 <body>
   <div id="page">
     <div id="game">
+      
       <h1 id="title">{%block heading %}{%endblock%}</h1>
       <div id="content">{%block canvas%}{%endblock%}</div>
-      <menu>
-        <div id="inventory">
-        </div>
-        <div id="locations"></div>
-        <div id="people"></div>
-      </menu>
-      <footer>
-        <a href="#newGame" onclick="game.newGame();return false;">New Game</a>
+      <footer id="links">
+        <!-- <small>Tip: Use the back button.</small> -->
       </footer>
-      <div id="dialogs">
-        <dialog id="zoom">
-          <header>
-            <a class="close" title="close">X</a>
-            <h2>Title</h2>
-          </header>
-          <content>content</content>
-          <footer>
-            <a class="prev" href="#prev">prev</a>
-            <a class="next" href="#next">next</a>
-          </footer>
-        </dialog>
-      </div>
     </div>
   </div>
-  <script src="/static/js/jquery-1.4.2.js"></script>
-	<script src="/static/js/jquery.ba-hashchange.min.js"></script>
+  
+  <script src="/static/js/jquery.min.js"></script>
   <script src="/static/js/tmpl.js"></script>
-  <script src="/static/js/showdown.min.js"></script>
+  <script src="/static/js/showdown.js"></script>
+  <script src="/static/js/loc.js"></script>
   <script src="/static/js/game.js"></script>
   {%block scripts%}{%endblock%}
 </body>

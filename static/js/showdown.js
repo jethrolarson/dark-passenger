@@ -355,7 +355,7 @@ var _RunBlockGamut = function(text) {
 	text = text.replace(/^[ ]{0,2}([ ]?\_[ ]?){3,}[ \t]*$/gm,key);
 
 	text = _DoLists(text);
-	text = _DoCodeBlocks(text);
+	//text = _DoCodeBlocks(text);
 	text = _DoBlockQuotes(text);
 
 	// We already ran _HashHTMLBlocks() before, in Markdown(), but that
@@ -375,7 +375,7 @@ var _RunSpanGamut = function(text) {
 // tags like paragraphs, headers, and list items.
 //
 
-	text = _DoCodeSpans(text);
+	//text = _DoCodeSpans(text);
 	text = _EscapeSpecialCharsWithinTagAttributes(text);
 	text = _EncodeBackslashEscapes(text);
 
@@ -842,138 +842,10 @@ _ProcessListItems = function(list_str) {
 	return list_str;
 }
 
-
-var _DoCodeBlocks = function(text) {
-//
-//  Process Markdown `<pre><code>` blocks.
-//  
-
-	/*
-		text = text.replace(text,
-			/(?:\n\n|^)
-			(								// $1 = the code block -- one or more lines, starting with a space/tab
-				(?:
-					(?:[ ]{4}|\t)			// Lines must start with a tab or a tab-width of spaces - attacklab: g_tab_width
-					.*\n+
-				)+
-			)
-			(\n*[ ]{0,3}[^ \t\n]|(?=~0))	// attacklab: g_tab_width
-		/g,function(){...});
-	*/
-
-	// attacklab: sentinel workarounds for lack of \A and \Z, safari\khtml bug
-	text += "~0";
-	
-	text = text.replace(/(?:\n\n|^)((?:(?:[ ]{4}|\t).*\n+)+)(\n*[ ]{0,3}[^ \t\n]|(?=~0))/g,
-		function(wholeMatch,m1,m2) {
-			var codeblock = m1;
-			var nextChar = m2;
-		
-			codeblock = _EncodeCode( _Outdent(codeblock));
-			codeblock = _Detab(codeblock);
-			codeblock = codeblock.replace(/^\n+/g,""); // trim leading newlines
-			codeblock = codeblock.replace(/\n+$/g,""); // trim trailing whitespace
-
-			codeblock = "<pre><code>" + codeblock + "\n</code></pre>";
-
-			return hashBlock(codeblock) + nextChar;
-		}
-	);
-
-	// attacklab: strip sentinel
-	text = text.replace(/~0/,"");
-
-	return text;
-}
-
 var hashBlock = function(text) {
 	text = text.replace(/(^\n+|\n+$)/g,"");
 	return "\n\n~K" + (g_html_blocks.push(text)-1) + "K\n\n";
 }
-
-
-var _DoCodeSpans = function(text) {
-//
-//   *  Backtick quotes are used for <code></code> spans.
-// 
-//   *  You can use multiple backticks as the delimiters if you want to
-//	 include literal backticks in the code span. So, this input:
-//	 
-//		 Just type ``foo `bar` baz`` at the prompt.
-//	 
-//	   Will translate to:
-//	 
-//		 <p>Just type <code>foo `bar` baz</code> at the prompt.</p>
-//	 
-//	There's no arbitrary limit to the number of backticks you
-//	can use as delimters. If you need three consecutive backticks
-//	in your code, use four for delimiters, etc.
-//
-//  *  You can use spaces to get literal backticks at the edges:
-//	 
-//		 ... type `` `bar` `` ...
-//	 
-//	   Turns to:
-//	 
-//		 ... type <code>`bar`</code> ...
-//
-
-	/*
-		text = text.replace(/
-			(^|[^\\])					// Character before opening ` can't be a backslash
-			(`+)						// $2 = Opening run of `
-			(							// $3 = The code block
-				[^\r]*?
-				[^`]					// attacklab: work around lack of lookbehind
-			)
-			\2							// Matching closer
-			(?!`)
-		/gm, function(){...});
-	*/
-
-	text = text.replace(/(^|[^\\])(`+)([^\r]*?[^`])\2(?!`)/gm,
-		function(wholeMatch,m1,m2,m3,m4) {
-			var c = m3;
-			c = c.replace(/^([ \t]*)/g,"");	// leading whitespace
-			c = c.replace(/[ \t]*$/g,"");	// trailing whitespace
-			c = _EncodeCode(c);
-			return m1+"<code>"+c+"</code>";
-		});
-
-	return text;
-}
-
-
-var _EncodeCode = function(text) {
-//
-// Encode/escape certain characters inside Markdown code runs.
-// The point is that in code, these characters are literals,
-// and lose their special Markdown meanings.
-//
-	// Encode all ampersands; HTML entities are not
-	// entities within a Markdown code span.
-	text = text.replace(/&/g,"&amp;");
-
-	// Do the angle bracket song and dance:
-	text = text.replace(/</g,"&lt;");
-	text = text.replace(/>/g,"&gt;");
-
-	// Now, escape characters that are magic in Markdown:
-	text = escapeCharacters(text,"\*_{}[]\\",false);
-
-// jj the line above breaks this:
-//---
-
-//* Item
-
-//   1. Subitem
-
-//            special char: *
-//---
-
-	return text;
-}
-
 
 var _DoItalicsAndBold = function(text) {
 

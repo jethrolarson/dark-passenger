@@ -1,41 +1,37 @@
-/*: Simple javascript templating
-	Adapted from John Resig's microtemplates
-	#takes @tm: #string text of template
-	#returns compiled template #function which takes a context as it's only param
-*/
-function tmpl(tm){
-	return new Function("obj","var p=[];(function(){p.push('" +
-		tm
-			.replace(/[\r\t]/g, " ")
-			.replace(/[\n]/g, "\\n")
-			.split("<%").join("\t")
-			.replace(/((^|%>)[^\t]*)'/g, "$1\r")
-			 // escape other single quotes
-			.split("'").join("\\'")
-			.replace(/\t=(.*?)%>/g, "',$1,'")
-			.split("\t").join("');")
-			.split("%>").join("p.push('")
-			.split("\r").join("\\'")
-		+ "');}).call(obj); return p.join('');");
-}
-//template helpers
-var _ = {
-	a: function(text,href,attr){
-		href = href || text;
-		return '<a href="'+href+'" '+this.attr(attr)+'>'+text+'</a>';
-	},
-	attr: function(obj){
-		if(!obj)return "";
-		var html = "";
-		$.each(obj,function(k,v){
-			html += k+'="'+v+'" ';
-		});
-		return html;
-	}
+// By default, Underscore uses ERB-style template delimiters, change the
+// following template settings to use alternative delimiters.
+var templateSettings = {
+	evaluate    : /<%([\s\S]+?)%>/g,
+	interpolate : /<%=([\s\S]+?)%>/g,
+	escape      : /<%-([\s\S]+?)%>/g
 };
 
-function markup(str){
-	return str
-		.replace(/\n\s?\n/,"<br /><br />")
-		.replace(/\[([^\]]+)\]\(([^\)]+)\)/,'<a href="$2">$1</a>');
-}
+// JavaScript micro-templating, similar to John Resig's implementation.
+// Underscore templating handles arbitrary delimiters, preserves whitespace,
+// and correctly escapes quotes within interpolated code.
+// Jethro adds context binding to data and `value` template delimeter
+var _ = typeof _ != undefined ? _ : {};
+var tIndex = 0;
+tmpl = function(str) {
+	var c  = templateSettings;
+	var tmpl = 'var __p=[],print=function(){__p.push.apply(__p,arguments);};' +
+		'(function(){with(obj||{}){__p.push(\'' +
+		str.replace(/\\/g, '\\\\')
+			.replace(/'/g, "\\'")
+			.replace(c.escape, function(match, code) {
+				return "',_.escape(" + code.replace(/\\'/g, "'") + "),'";
+			})
+			.replace(c.interpolate, function(match, code) {
+				return "'," + code.replace(/\\'/g, "'") + ",'";
+			})
+			.replace(c.evaluate || null, function(match, code) {
+				return "');" + code.replace(/\\'/g, "'")
+					.replace(/[\r\n\t]/g, ' ') + ";__p.push('";
+			})
+			.replace(/\r/g, '\\r')
+			.replace(/\n/g, '\\n')
+			.replace(/\t/g, '\\t')
+			+ "');}}).call(obj);return __p.join('');";
+	var func = new Function('obj', '_', tmpl);
+	return function(data) { return func(data, _) };
+};

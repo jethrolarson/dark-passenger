@@ -1,45 +1,37 @@
-a{color: #7F5F63; text-decoration:none;}
+a{
+  color: #8F4E56; 
+  text-decoration: none; 
+  border-bottom: 2px solid rgb(56, 41, 43);
+}
 a:visited{color:#6F5357;}
-a:hover{color: #AF5763;text-decoration:underline;}
+a:hover{color: #AF5763;}
 
-code{color:#8F77EF;}
-
-html,body{min-height:100%;}
+i{
+  font-style: normal;
+  color:#8F77EF;
+  font-family: monospace;}
+b{
+  color: hsl(21, 37%, 34%);
+}
+html,body{height:100%;}
 body{
-  background:#111; font: 16px/1.4 georgia, serif;
+  background:#111; 
+  font: 24px/1.4 georgia, serif;
   color: #999;}
 body.loading *{cursor: wait;}
 #page{
-  width: 550px; min-height:100%;
+  max-width: 850px; min-height:100%;
   margin:0 auto; padding: 24px;box-sizing:border-box;
   background: #191919;}
-  #content{min-height: 600px;}
-dialog{
-  display:none;
-  position: absolute;top:80px; left: 50%;
-  width: 400px;
-  margin-left: -200px;
-  background:#222;
-  -moz-border-radius: 12px;
-  -moz-box-shadow: #000 0 0 40px;}
-  dialog header{
-    padding: 6px;
-    border-bottom: 1px solid #444;}
-    dialog h2{
-      margin:0 6px;
-      font-size: 20px;}
-  .close{
-    display:block;
-    float:right;
-    padding: 0 5px;
-    color:#1d1d1d;
-    text-shadow:#444 1px 1px 1px;
-    font-size: 20px;
-    cursor: pointer;}
-  .close:hover{text-decoration:none; color:#222;}
-  dialog content{margin: 12px;}
-  dialog footer{display:none;}
-  
+
+#links a{display: inline-block;margin: 0 10px;}
+.reset{
+  color: #333;
+}
+footer{
+  position: absolute;
+  bottom: 0;
+}
 /*clearfix*/
 section:after,
 dialog:after,
