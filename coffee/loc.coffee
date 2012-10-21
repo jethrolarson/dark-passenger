@@ -10,9 +10,9 @@ window.loc =
   #######
   'sprawling-mansion': 
     content: """
-      After a [long walk](#sprawling-mansion/long-walk) up the nastiest dirt road I've ever seen I finally arrive at the Smith/McCaskill family [homestead](#sprawling-mansion/detail).
+      After a [long walk](#sprawling-mansion_long-walk) up the nastiest dirt road I've ever seen I finally arrive at the Smith/McCaskill family [homestead](#sprawling-mansion_detail).
 
-      [Hiro](#hiro) is sitting on the bent armrest of the [porch couch](#sprawling-mansion/couch).
+      [Hiro](#hiro) is sitting on the bent armrest of the [porch couch](#sprawling-mansion_couch).
     """
     "long-walk":
       content: """
@@ -46,12 +46,12 @@ window.loc =
     content: """
       <%cache._Hiro = "hiro";%>
       <%if(!cache.hiro_examined){%>
-        Hiro's nephew, Jimmy woke me late last night, pounding on my door and saying his cousin, Jessica had been [possessed](#hiro/possession) and went on a rampage. The [bloody rag](#hiro/examination) on Hiro's neck tells me his daughter's freakout was extraordinary.
+        Hiro's nephew, Jimmy woke me late last night, pounding on my door and saying his cousin, Jessica had been [possessed](#hiro_possession) and went on a rampage. The [bloody rag](#hiro_examination) on Hiro's neck tells me his daughter's freakout was extraordinary.
       <%}else{%>
         
         Hiro sways slowly from side to side. It is apparently taking all his attention to keep his pain under control. I hope I can do something for him soon.
         The bloody rag is still bright with fresh blood.
-        Jin thinks "[the yellowing](#hiro/wound/jin)" has started, whatever that means.
+        Jin thinks "[the yellowing](#hiro_wound_jin)" has started, whatever that means.
       <%}%>
     """
     possession: 
@@ -71,11 +71,11 @@ window.loc =
 
         "Considering how you look, I hope so too. How's the wound?"
 
-        "Terrible. Won't stop bleeding." A pained, exhausted look crosses his face as he glances toward the rag. The blood has a [yellowish tinge](#hiro/examination2).
+        "Terrible. Won't stop bleeding." A pained, exhausted look crosses his face as he glances toward the rag. The blood has a [yellowish tinge](#hiro_examination2).
       """
     examination2: 
       content: """
-        <i>"Sweet, the [yellowing](#hiro/wound/jin)! He'll be lots of fun tonight."</i>, Jin says
+        <i>"Sweet, the [yellowing](#hiro_wound_jin)! He'll be lots of fun tonight."</i>, Jin says
 
         "Oh? What happens then?" I ask.
 
@@ -85,7 +85,7 @@ window.loc =
         Jin laughs in my head.
 
         "Maybe you would like to 
-        [check it out](#hiro/wound)?" Hiro asks
+        [check it out](#hiro_wound)?" Hiro asks
         soberly.
       """
     wound: 
@@ -93,7 +93,7 @@ window.loc =
         I nod and step forward. As I approach him the smell of old meat 
         and tooth decay hits me.
       
-        Hiro pulls the rag off the wound. I cringe at the fist sized area of his neck that's just meat, and not good meat. It's like some kind of abominable afterbirth, veiny and raw. It's actively weeping a strange [iodine colored fluid](#hiro/wound/sample). 
+        Hiro pulls the rag off the wound. I cringe at the fist sized area of his neck that's just meat, and not good meat. It's like some kind of abominable afterbirth, veiny and raw. It's actively weeping a strange [iodine colored fluid](#hiro_wound_sample). 
       """
       jin: 
         content: """
@@ -103,7 +103,7 @@ window.loc =
           <%cache.askedJinWound = "true";%>
           "What is this yellowing? How do I cure him?" I mutter under my breath hoping only Jin will hear.
           
-          <i>I don't <em>do</em> cures but I think the [stick](#stick/intro) might know some way to get rid of it.</i>
+          <i>I don't <em>do</em> cures but I think the [stick](#stick_intro) might know some way to get rid of it.</i>
 
           "So what is the yellowing really called? I don't want to play 20 questions with the damn stick." 
 
@@ -131,12 +131,12 @@ window.loc =
     content: """
       The morning sun gave me hope that today would be warm, but there's no 
       comfort to be found in this little farm house. <%if(cache.whispers){%>
-      [Whispers](#living-room/whispers)<%}else{%>Whispers<%}%> blow through the 
+      [Whispers](#living-room_whispers)<%}else{%>Whispers<%}%> blow through the 
       house but the air is still, hanging with a 
-      [thick stench](#living-room/smell).
+      [thick stench](#living-room_smell).
       
       A hazy beam of bluish light shines from the 
-      [open window](#living-room/shutters) on the [wreckage](#living-room/wreckage) of 
+      [open window](#living-room_shutters) on the [wreckage](#living-room_wreckage) of 
       last night's incident.
     """
     shutters: 
@@ -160,7 +160,7 @@ window.loc =
       """
     whispers:
       content: """
-        Harsh whispers hiss from behind a [blanket](#living-room/blanket) that has been hung on a doorway. 
+        Harsh whispers hiss from behind a [blanket](#living-room_blanket) that has been hung on a doorway. 
 
         I can't make out what they're saying. Whatever it is, it definately isn't nice.
       """
@@ -175,7 +175,7 @@ window.loc =
       It's a strange snake-shaped artifact I found in the shell of a burnt camper shell. At the time I thought it was weird that a pyrex lantern had melted but a whittled stick was fine. It makes sense to me now.
       
       I ask about...
-      [The cure to The Creeping Dream](#<%if(!cache.dream_asked){%>stick/<%}%>creeping-dream)
+      [The cure to The Creeping Dream](#<%if(!cache.dream_asked){%>stick_<%}%>creeping-dream)
     """
     intro:
       content: """
@@ -194,7 +194,7 @@ window.loc =
       content: """
         I hold the stick in front of me and turn it's lightly carved face to look back into my eyes. It immediately turns into a inky black viper, wrapping it's tail around my wrist. It lurches up toward my face it's fangs exposed. Every nerve in my body screams in panic but somehow I resist. It looks me straight in the eye.
 
-        "How do I cure The Creeping Dream?" I ask. It blinks once at me and suddenly is a stick in my hand again. I start to [remember](#stick/creeping-dream/answer).
+        "How do I cure The Creeping Dream?" I ask. It blinks once at me and suddenly is a stick in my hand again. I start to [remember](#stick_creeping-dream_answer).
       """
       answer:
         content:"""
@@ -214,7 +214,7 @@ window.loc =
   'creeping-dream':
     content: """
       <%cache._Curse = "creeping-dream";%>
-      The Creeping Dream is a <%if(cache.parasite){%> curse <%}else{%> [curse](#creeping-dream/curse) <%}%> caused by a powerful <%if(cache.mara){%>Mara, a chaotic spirit that causes nightmares<%}else{%>[Mara](#creeping-dream/mara)<%}%>.
+      The Creeping Dream is a <%if(cache.parasite){%> curse <%}else{%> [curse](#creeping-dream_curse) <%}%> caused by a powerful <%if(cache.mara){%>Mara, a chaotic spirit that causes nightmares<%}else{%>[Mara](#creeping-dream_mara)<%}%>.
       
       <%if(cache.parasite){%>
         The parasites can be destroyed by shaming the host while they're in water.

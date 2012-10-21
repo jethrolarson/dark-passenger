@@ -47,22 +47,35 @@
         return $.scrollTo(_this.renderCmd(c));
       });
       return $.on('click', 'a', function(e) {
+        var $t, hash;
+        hash = this.hash;
         if (this.hash) {
-          cmd(this.hash.slice(1));
+          $t = $(hash);
+          if ($t.length) {
+            $('.passage').removeClass('on');
+            $.scrollTo($t.addClass('on', {
+              onAfter: function() {
+                return location.hash = hash;
+              }
+            }));
+          } else {
+            cmd(this.hash.slice(1));
+          }
         }
         return e.preventDefault();
       });
     },
     renderCmd: function(c) {
       var data, lookupArray, newContent;
+      $('.passage').removeClass('on');
       $('a').each(function() {
         if (this.hash === '#' + c) {
-          return $(this).after('<span class="clicked">' + $(this).text() + '</span>').remove();
+          return $(this).addClass('clicked');
         }
       });
-      lookupArray = c.split('/');
+      lookupArray = c.split('_');
       data = lookupOb(this.locations, lookupArray);
-      newContent = $('<div class="passage">' + this.parseContent(data.content) + '</div>');
+      newContent = $('<div class="passage on" id="' + c + '">' + this.parseContent(data.content) + '</div>');
       if (data.className) {
         newContent.addClass(data.className);
       }

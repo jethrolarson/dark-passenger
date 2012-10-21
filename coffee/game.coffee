@@ -32,16 +32,25 @@ game = {
 		$w.bind 'cmd',(e,c)=>
 			$.scrollTo @renderCmd c
 		$.on 'click', 'a', (e)->
+			hash = @hash
 			if @hash
-				cmd @hash.slice 1
+				$t = $ hash
+				if $t.length
+					$('.passage').removeClass 'on'
+					$.scrollTo $t.addClass 'on', onAfter: ->
+						location.hash = hash
+
+				else
+					cmd @hash.slice 1
 			e.preventDefault()
 	renderCmd: (c)->
+		$('.passage').removeClass 'on'
 		$('a').each ->
 			if @hash is '#'+c
-				$(this).after('<span class="clicked">'+$(this).text()+'</span>').remove()
-		lookupArray = c.split('/')
-		data = lookupOb(@locations,lookupArray)
-		newContent = $ '<div class="passage">'+@parseContent(data.content)+'</div>'
+				$(this).addClass 'clicked'
+		lookupArray = c.split('_')
+		data = lookupOb @locations,lookupArray
+		newContent = $ '<div class="passage on" id="'+c+'">'+@parseContent(data.content)+'</div>'
 		newContent.addClass(data.className) if data.className
 
 		@$content.append newContent
