@@ -1,7 +1,7 @@
 window.loc = 
   intro:
     content: """
-      This morning I saw the cafe waitress curse a overbearing logger. It's a blessing few people know real curses. Anyone who's been cursed wouldn't wish one on their worst enemies. I know I wouldn't.
+      This morning I saw the café waitress curse an overbearing logger. It's a blessing few people know real curses. Anyone who's been cursed wouldn't wish one on their worst enemies. I know I wouldn't.
     
       [Dark Passenger](#sprawling-mansion)
 
@@ -10,33 +10,37 @@ window.loc =
   #######
   'sprawling-mansion': 
     content: """
-      <%cache._Mansion="sprawling-mansion";%>
-      After a [long walk](#sprawling-mansion/long-trek) up the nastiest dirt road I've ever seen I finally arrive at the Smith/McCaskill family [homestead](#sprawling-mansion/detail).
+      After a [long walk](#sprawling-mansion/long-walk) up the nastiest dirt road I've ever seen I finally arrive at the Smith/McCaskill family [homestead](#sprawling-mansion/detail).
 
       [Hiro](#hiro) is sitting on the bent armrest of the [porch couch](#sprawling-mansion/couch).
     """
-    "long-trek":
+    "long-walk":
       content: """
         My legs ache and I've gotten far too little sleep for what I know is ahead. I almost wish I'd accepted the ride from [Billy](#billy) at the store. At least his three-wheeler could have dropped me off where the road became completely impassible, provided I survive the ride, of course.
       """
+      className: 'aside'
     "detail":
       content: """
         If there was a <em>Lifestyles of the Broke and Obscure</em> this place would be the season finale. 
 
-        When Hiro McCaskill married Crystyl Smith the families moved in together, or rather moved their homes together. Since Hiro's property had the nicest view, five of the joined family's households pulled their trailers together into a super-home. The result looks like a mobile home destruction derby infested with feral animals.
+        The marriage of Hiro McCaskill and Crystyl Smith ended a four-generation feud. To celebrate the families moved their five trailers to hobble ridge where they would share water rights over Bolt Creek. The result resembles a mobile home destruction derby infested with feral animals.
 
         The trailer amalgamation is cut down the middle, with various cutting tools piled around the split. I guess the divorce proceedings are finally underway.
       """
+      className: 'aside'
     "couch":
       content:"""
-        A porch couch is the decrepit husk of a former living room couch that has been exposed to the elements. And by elements I mean 5 stinky dogs and El Niño. The dogs are strangely absent today.
+        A porch couch is the decrepit husk of a former living room couch that has been exposed to the elements. And by elements I mean 5 filthy dogs and El Niño. The dogs are strangely absent today.
       """
+      className: 'aside'
   billy:
     content:"""
       Billy was grossly overweight, dirty, and had the kind of independence that only comes from years of government assistance. I'd sewn up a gash on his leg last week. He had wrecked his 3 wheeler jumping it out of the bed of a lifted pickup. Today he was wearing shorts again and it looked like he pulled out his own stitches. 
 
       Some people are accident prone, Billy was safety impaired. 
     """
+    className: 'aside'
+
   hiro:
     #title: "Hiro"
     content: """
@@ -54,6 +58,7 @@ window.loc =
       content: """
         Coming here is like stepping into a world where the renaissance never happened. Any illness that can't be healed with alcohol, pot, or the contents under the sink is clearly the work of evil spirits. The last "possession" I had to deal with turned out to be shingles. 
       """
+      className: 'aside'
     examination:
       content: """
         <%if(cache.hiro_examined){%>
@@ -174,7 +179,6 @@ window.loc =
     """
     intro:
       content: """
-        <%cache.stick_on="true";%>
         I pull the talking stick from my satchel. It's wrapped in an anti-static bag I got from the computer guy at the school -- the only thing that's managed to stop the itching. 
         
         "I don't suppose you have a clue what's happening, Hiro?" My hands are shaking as I unwind the rubber bands holding the bag shut.
@@ -183,6 +187,8 @@ window.loc =
         
         "Damn." I put Hiro's rag back on his shoulder. "Excuse me a moment". I step aside and [produce the stick](#stick).
       """
+      callback: ->
+        set 'stick_on'
     # This is the first question you can ask so I'm including more description here than I will on future questions.
     'creeping-dream': 
       content: """
@@ -204,6 +210,7 @@ window.loc =
 
       It turns out that exorcism is harder than it looks.
     """
+    className: 'aside'
   'creeping-dream':
     content: """
       <%cache._Curse = "creeping-dream";%>

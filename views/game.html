@@ -5,6 +5,7 @@
   <title id="page_title">Dark Passenger</title>
   <link rel="stylesheet" href="/static/css/css-reset.css"/>
   <link rel="stylesheet" href="/static/css/css-set.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Tinos' rel='stylesheet'/>
   <link rel="stylesheet" href="/static/css/global.css"/>
   {%block css%}{%endblock%}
   <!--[if IE]>
@@ -22,8 +23,8 @@
       
       <h1 id="title">{%block heading %}{%endblock%}</h1>
       <div id="content">{%block canvas%}{%endblock%}</div>
-      <footer id="links">
-        <!-- <small>Tip: Use the back button.</small> -->
+      <footer id="links" class="cf">
+        <a class="reset" onclick="if(confirm('Start over from the beginning?')){localStorage.clear();location.reload();}">Restart</a>
       </footer>
     </div>
   </div>

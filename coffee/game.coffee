@@ -1,6 +1,7 @@
+# coffee -o static/js/ -w -c coffee/
 w = window
-$w = $(w)
-
+$w = $ w
+$d = $ document
 # Utils
 lookupOb = (ob, arr)->
 	result = ob
@@ -9,6 +10,10 @@ lookupOb = (ob, arr)->
 		return undefined if result == undefined
 
 	return result
+
+
+$.on = (args...)->
+	$d.on.apply $d, args
 
 # Game object #constructor
 game = {
@@ -24,41 +29,79 @@ game = {
 		@locations = window.loc
 		@start()
 	bindEvents: ->
-		$w.bind hashchange: @render.bind(this)
-		$(document).on 'click','a.back', (e)->
+		$w.bind 'cmd',(e,c)=>
+			$.scrollTo @renderCmd c
+		$.on 'click', 'a', (e)->
+			if @hash
+				cmd @hash.slice 1
 			e.preventDefault()
-			window.history.go(-1)
-	render: ->
-		hash = if window.location.hash then window.location.hash.slice(1) else 'intro'
-		lookupArray = hash.split('/')
+	renderCmd: (c)->
+		$('a').each ->
+			if @hash is '#'+c
+				$(this).after('<span class="clicked">'+$(this).text()+'</span>').remove()
+		lookupArray = c.split('/')
 		data = lookupOb(@locations,lookupArray)
-		content = @parseContent(data.content)
-		@$game.fadeOut(200, =>
-			if data.title
-				document.title = data.title + ' - ' + @title
-				@$title.text(data.title||"")
-			@$content.html content
-			links = ''
-			if not @$content.find('a').length
-				@$content.append """<a href="" class="back">Back</a>"""
-			for k,v of cache
-				if /^_/.test(k) 
-					links += '<a href="#'+v+'">'+k.slice(1)+'</a>'
-			links +="""<a class="reset" onclick="if(confirm('Restart Game?')){localStorage.clear();location.href='/';}">Restart</a>"""
-			@$links.html(links)
-			@$game.fadeIn(200)
-		)
+		newContent = $ '<div class="passage">'+@parseContent(data.content)+'</div>'
+		newContent.addClass(data.className) if data.className
+
+		@$content.append newContent
+		return newContent
+
+	render: (cmds)->
+		if not $.isArray cmds
+			cmds = [cmds]
+		@renderCmd c for c in cmds
 	newGame: ->
 		cache.clear()
 		@render('intro')
 	start: ->
-		$w.trigger('hashchange')
+		cmds = getCmds()
+		if cmds.length
+			@render cmds
+		else
+			cmd 'intro'
 	parseContent: (txt)->
 		txt = tmpl(txt)(this)
-		return txt = converter.makeHtml(txt)
+		return converter.makeHtml(txt)
 }
-
 window.cache = localStorage
+
+w.cmd = (cmd)->
+	$w.trigger 'cmd', cmd
+	ar = getCmds()
+	ar.push cmd
+	set 'cmd', ar
+	ar
+
+w.getCmds = -> (get 'cmd') or []
+
+w.set = (key,val)->
+	val = JSON.stringify val
+	try
+		window.cache[key] = val
+	catch e
+		alert e
+	
+w.get = (key)->
+	val = window.cache[key]
+	return if val then JSON.parse val else undefined
+
+$.scrollTo = (selector, settings)->
+	settings = $.extend {
+		offset: {
+			top: 0
+		},
+		onAfter: $.noop,
+		duration: 400
+	}, settings
+	pos = $(selector).offset()
+	$('html,body').animate {
+			scrollTop: pos.top + settings.offset.top
+		},
+		settings.speed,
+		settings.easing,
+		->
+			settings.onAfter()
 
 converter = new Showdown.converter()
 

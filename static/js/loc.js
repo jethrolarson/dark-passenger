@@ -3,27 +3,32 @@
 
   window.loc = {
     intro: {
-      content: "  This morning I saw the cafe waitress curse a overbearing logger. It's a blessing few people know real curses. Anyone who's been cursed wouldn't wish one on their worst enemies. I know I wouldn't.\n\n  [Dark Passenger](#sprawling-mansion)\n\n  by Jethro Larson"
+      content: "  This morning I saw the café waitress curse an overbearing logger. It's a blessing few people know real curses. Anyone who's been cursed wouldn't wish one on their worst enemies. I know I wouldn't.\n\n  [Dark Passenger](#sprawling-mansion)\n\n  by Jethro Larson"
     },
     'sprawling-mansion': {
-      content: "<%cache._Mansion=\"sprawling-mansion\";%>\nAfter a [long walk](#sprawling-mansion/long-trek) up the nastiest dirt road I've ever seen I finally arrive at the Smith/McCaskill family [homestead](#sprawling-mansion/detail).\n\n[Hiro](#hiro) is sitting on the bent armrest of the [porch couch](#sprawling-mansion/couch).",
-      "long-trek": {
-        content: "My legs ache and I've gotten far too little sleep for what I know is ahead. I almost wish I'd accepted the ride from [Billy](#billy) at the store. At least his three-wheeler could have dropped me off where the road became completely impassible, provided I survive the ride, of course."
+      content: "After a [long walk](#sprawling-mansion/long-walk) up the nastiest dirt road I've ever seen I finally arrive at the Smith/McCaskill family [homestead](#sprawling-mansion/detail).\n\n[Hiro](#hiro) is sitting on the bent armrest of the [porch couch](#sprawling-mansion/couch).",
+      "long-walk": {
+        content: "My legs ache and I've gotten far too little sleep for what I know is ahead. I almost wish I'd accepted the ride from [Billy](#billy) at the store. At least his three-wheeler could have dropped me off where the road became completely impassible, provided I survive the ride, of course.",
+        className: 'aside'
       },
       "detail": {
-        content: "If there was a <em>Lifestyles of the Broke and Obscure</em> this place would be the season finale. \n\nWhen Hiro McCaskill married Crystyl Smith the families moved in together, or rather moved their homes together. Since Hiro's property had the nicest view, five of the joined family's households pulled their trailers together into a super-home. The result looks like a mobile home destruction derby infested with feral animals.\n\nThe trailer amalgamation is cut down the middle, with various cutting tools piled around the split. I guess the divorce proceedings are finally underway."
+        content: "If there was a <em>Lifestyles of the Broke and Obscure</em> this place would be the season finale. \n\nThe marriage of Hiro McCaskill and Crystyl Smith ended a four-generation feud. To celebrate the families moved their five trailers to hobble ridge where they would share water rights over Bolt Creek. The result resembles a mobile home destruction derby infested with feral animals.\n\nThe trailer amalgamation is cut down the middle, with various cutting tools piled around the split. I guess the divorce proceedings are finally underway.",
+        className: 'aside'
       },
       "couch": {
-        content: "A porch couch is the decrepit husk of a former living room couch that has been exposed to the elements. And by elements I mean 5 stinky dogs and El Niño. The dogs are strangely absent today."
+        content: "A porch couch is the decrepit husk of a former living room couch that has been exposed to the elements. And by elements I mean 5 filthy dogs and El Niño. The dogs are strangely absent today.",
+        className: 'aside'
       }
     },
     billy: {
-      content: "Billy was grossly overweight, dirty, and had the kind of independence that only comes from years of government assistance. I'd sewn up a gash on his leg last week. He had wrecked his 3 wheeler jumping it out of the bed of a lifted pickup. Today he was wearing shorts again and it looked like he pulled out his own stitches. \n\nSome people are accident prone, Billy was safety impaired. "
+      content: "Billy was grossly overweight, dirty, and had the kind of independence that only comes from years of government assistance. I'd sewn up a gash on his leg last week. He had wrecked his 3 wheeler jumping it out of the bed of a lifted pickup. Today he was wearing shorts again and it looked like he pulled out his own stitches. \n\nSome people are accident prone, Billy was safety impaired. ",
+      className: 'aside'
     },
     hiro: {
       content: "<%cache._Hiro = \"hiro\";%>\n<%if(!cache.hiro_examined){%>\n  Hiro's nephew, Jimmy woke me late last night, pounding on my door and saying his cousin, Jessica had been [possessed](#hiro/possession) and went on a rampage. The [bloody rag](#hiro/examination) on Hiro's neck tells me his daughter's freakout was extraordinary.\n<%}else{%>\n  \n  Hiro sways slowly from side to side. It is apparently taking all his attention to keep his pain under control. I hope I can do something for him soon.\n  The bloody rag is still bright with fresh blood.\n  Jin thinks \"[the yellowing](#hiro/wound/jin)\" has started, whatever that means.\n<%}%>",
       possession: {
-        content: "Coming here is like stepping into a world where the renaissance never happened. Any illness that can't be healed with alcohol, pot, or the contents under the sink is clearly the work of evil spirits. The last \"possession\" I had to deal with turned out to be shingles. "
+        content: "Coming here is like stepping into a world where the renaissance never happened. Any illness that can't be healed with alcohol, pot, or the contents under the sink is clearly the work of evil spirits. The last \"possession\" I had to deal with turned out to be shingles. ",
+        className: 'aside'
       },
       examination: {
         content: "<%if(cache.hiro_examined){%>\n  From Memory:\n<%}%>\n<%cache.hiro_examined=true;%>\n\"How you holding up?\" I ask.\n\n\"Worse'n Jess, I hope\".\n\n\"Considering how you look, I hope so too. How's the wound?\"\n\n\"Terrible. Won't stop bleeding.\" A pained, exhausted look crosses his face as he glances toward the rag. The blood has a [yellowish tinge](#hiro/examination2)."
@@ -62,7 +67,10 @@
     stick: {
       content: "<%cache._Stick = \"stick\";%>\nIt's a strange snake-shaped artifact I found in the shell of a burnt camper shell. At the time I thought it was weird that a pyrex lantern had melted but a whittled stick was fine. It makes sense to me now.\n\nI ask about...\n[The cure to The Creeping Dream](#<%if(!cache.dream_asked){%>stick/<%}%>creeping-dream)",
       intro: {
-        content: "<%cache.stick_on=\"true\";%>\nI pull the talking stick from my satchel. It's wrapped in an anti-static bag I got from the computer guy at the school -- the only thing that's managed to stop the itching. \n\n\"I don't suppose you have a clue what's happening, Hiro?\" My hands are shaking as I unwind the rubber bands holding the bag shut.\n\nHiro shakes his head.\n\n\"Damn.\" I put Hiro's rag back on his shoulder. \"Excuse me a moment\". I step aside and [produce the stick](#stick)."
+        content: "I pull the talking stick from my satchel. It's wrapped in an anti-static bag I got from the computer guy at the school -- the only thing that's managed to stop the itching. \n\n\"I don't suppose you have a clue what's happening, Hiro?\" My hands are shaking as I unwind the rubber bands holding the bag shut.\n\nHiro shakes his head.\n\n\"Damn.\" I put Hiro's rag back on his shoulder. \"Excuse me a moment\". I step aside and [produce the stick](#stick).",
+        callback: function() {
+          return set('stick_on');
+        }
       },
       'creeping-dream': {
         content: "I hold the stick in front of me and turn it's lightly carved face to look back into my eyes. It immediately turns into a inky black viper, wrapping it's tail around my wrist. It lurches up toward my face it's fangs exposed. Every nerve in my body screams in panic but somehow I resist. It looks me straight in the eye.\n\n\"How do I cure The Creeping Dream?\" I ask. It blinks once at me and suddenly is a stick in my hand again. I start to [remember](#stick/creeping-dream/answer).",
@@ -72,7 +80,8 @@
       }
     },
     jin: {
-      content: "<%cache._Jin = \"jin\";%>\nJin is my cross to bear; the kind of cross that whispers evil shit in your ear constantly, makes you weak, insecure, and occasionally summons swarms of black flies out of nowhere.\n\nI used to be an aggressive atheist, as if shooting down other's beliefs made their lives better. Here people start drawing guns if you tell them that bigfoot is a myth. So I played around their insanity to keep the peace. \n\nIt turns out that exorcism is harder than it looks."
+      content: "<%cache._Jin = \"jin\";%>\nJin is my cross to bear; the kind of cross that whispers evil shit in your ear constantly, makes you weak, insecure, and occasionally summons swarms of black flies out of nowhere.\n\nI used to be an aggressive atheist, as if shooting down other's beliefs made their lives better. Here people start drawing guns if you tell them that bigfoot is a myth. So I played around their insanity to keep the peace. \n\nIt turns out that exorcism is harder than it looks.",
+      className: 'aside'
     },
     'creeping-dream': {
       content: "<%cache._Curse = \"creeping-dream\";%>\nThe Creeping Dream is a <%if(cache.parasite){%> curse <%}else{%> [curse](#creeping-dream/curse) <%}%> caused by a powerful <%if(cache.mara){%>Mara, a chaotic spirit that causes nightmares<%}else{%>[Mara](#creeping-dream/mara)<%}%>.\n\n<%if(cache.parasite){%>\n  The parasites can be destroyed by shaming the host while they're in water.\n\n  The curse itself is attached to some object that the afflicted loves. Break that love and then destroy the item with fire.\n<%}%>",

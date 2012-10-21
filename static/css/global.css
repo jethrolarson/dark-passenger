@@ -1,47 +1,71 @@
-a{
+*{
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  box-sizing:border-box;
+}
+a,
+a:visited{
   color: #8F4E56; 
   text-decoration: none; 
   border-bottom: 2px solid rgb(56, 41, 43);
 }
-a:visited{color:#6F5357;}
 a:hover{color: #AF5763;}
 
 i{
-  font-style: normal;
-  color:#8F77EF;
-  font-family: monospace;}
-b{
-  color: hsl(21, 37%, 34%);
-}
+  color: #6D687E;}
 html,body{height:100%;}
 body{
   background:#111; 
-  font: 24px/1.4 georgia, serif;
+  font: 24px/1.5 'Tinos', georgia, serif;
   color: #999;}
 body.loading *{cursor: wait;}
+p{margin: 0 0 1em;}
+p:last-child{margin-bottom: 0;}
 #page{
-  max-width: 850px; min-height:100%;
-  margin:0 auto; padding: 24px;box-sizing:border-box;
+  max-width: 650px; min-height:100%;
+  margin:0 auto;
   background: #191919;}
 
-#links a{display: inline-block;margin: 0 10px;}
+#links a{
+  margin: 0 10px;
+  font-size: 18px;}
+
+.passage{
+  padding: 12px 24px;
+  border-top: 1px solid #303030;
+}
+.passage:first-child{border: none;}
+.passage:last-child{
+  background: #222;
+  border-bottom: 1px solid #111;}
+.aside{
+  font-size: 18px;
+  color: #777;
+}
+.clicked{
+  color: #777;
+}
 .reset{
   color: #333;
 }
 footer{
-  position: absolute;
-  bottom: 0;
+  padding: 0 14px;
 }
 /*clearfix*/
-section:after,
-dialog:after,
-header:after,
-footer:after,
-content:after{
-  content: '.';
-  display:block;
-  clear:both;
-  height: 0;
-  visibility:hidden;
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+.cf:after {
+    clear: both;
+}
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
 }
   
