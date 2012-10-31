@@ -31,7 +31,6 @@
   game = {
     title: 'Dark Passenger',
     $game: $('#game'),
-    $title: $('#title'),
     $content: $('#content'),
     $links: $('#links'),
     locations: {},
@@ -39,73 +38,71 @@
       cache.links = cache.links || {};
       this.bindEvents();
       this.locations = window.loc;
-      return this.start();
+      this.render();
+      return $.scrollTo($('.passage').last(), {
+        duration: 0
+      });
     },
     bindEvents: function() {
-      var _this = this;
-      $w.bind('cmd', function(e, c) {
-        return $.scrollTo(_this.renderCmd(c));
-      });
+      var self;
+      self = this;
       return $.on('click', 'a', function(e) {
-        var $t, hash;
+        var $t, ar, hash;
         hash = this.hash;
         if (this.hash) {
           $t = $(hash);
           if ($t.length) {
             $('.passage').removeClass('on');
-            $.scrollTo($t.addClass('on', {
-              onAfter: function() {
-                return location.hash = hash;
-              }
-            }));
+            $t.addClass('on');
+            $.scrollTo($t).done(function() {
+              return location.hash = hash;
+            });
           } else {
-            cmd(this.hash.slice(1));
+            ar = getCmds();
+            ar.push(this.hash.slice(1));
+            set('cmd', ar);
+            self.render();
+            $.scrollTo($('.passage').last());
           }
         }
         return e.preventDefault();
       });
     },
     renderCmd: function(c) {
-      var data, lookupArray, newContent;
+      var data, lookupArray;
       $('.passage').removeClass('on');
-      $('a').each(function() {
-        if (this.hash === '#' + c) {
-          return $(this).addClass('clicked');
-        }
-      });
       lookupArray = c.split('_');
       data = lookupOb(this.locations, lookupArray);
-      newContent = $('<div class="passage on" id="' + c + '">' + this.parseContent(data.content) + '</div>');
-      if (data.className) {
-        newContent.addClass(data.className);
-      }
-      this.$content.append(newContent);
-      return newContent;
+      return "<div class=\"passage " + (data.className ? data.className : '') + "\" id=\"" + c + "\">" + (this.parseContent(data.content)) + "</div>";
     },
     render: function(cmds) {
-      var c, _i, _len, _results;
-      if (!$.isArray(cmds)) {
-        cmds = [cmds];
+      var c, content, _i, _len,
+        _this = this;
+      cmds = getCmds();
+      content = '';
+      if (!$.isArray(cmds) || cmds.length === 0) {
+        cmds = set('cmd', ['intro']);
       }
-      _results = [];
       for (_i = 0, _len = cmds.length; _i < _len; _i++) {
         c = cmds[_i];
-        _results.push(this.renderCmd(c));
+        content += this.renderCmd(c);
       }
-      return _results;
-    },
-    newGame: function() {
-      cache.clear();
-      return this.render('intro');
-    },
-    start: function() {
-      var cmds;
-      cmds = getCmds();
-      if (cmds.length) {
-        return this.render(cmds);
-      } else {
-        return cmd('intro');
-      }
+      content = $(content);
+      $('a', content).each(function(i, el) {
+        var v, _j, _len1, _results;
+        _results = [];
+        for (_j = 0, _len1 = cmds.length; _j < _len1; _j++) {
+          v = cmds[_j];
+          if (el.hash === '#' + v) {
+            $(el).addClass('clicked');
+            break;
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      });
+      return this.$content.html(content);
     },
     parseContent: function(txt) {
       txt = tmpl(txt)(this);
@@ -115,26 +112,19 @@
 
   window.cache = localStorage;
 
-  w.cmd = function(cmd) {
-    var ar;
-    $w.trigger('cmd', cmd);
-    ar = getCmds();
-    ar.push(cmd);
-    set('cmd', ar);
-    return ar;
-  };
-
   w.getCmds = function() {
-    return (get('cmd')) || [];
+    return w.get('cmd') || [];
   };
 
   w.set = function(key, val) {
     val = JSON.stringify(val);
     try {
-      return window.cache[key] = val;
+      window.cache[key] = val;
     } catch (e) {
-      return alert(e);
+      alert(e);
+      return void 0;
     }
+    return val;
   };
 
   w.get = function(key) {
@@ -148,20 +138,21 @@
   };
 
   $.scrollTo = function(selector, settings) {
-    var pos;
+    var dfd, pos;
     settings = $.extend({
       offset: {
         top: 0
       },
-      onAfter: $.noop,
       duration: 400
     }, settings);
+    dfd = $.Deferred();
     pos = $(selector).offset();
-    return $('html,body').animate({
+    $('html,body').animate({
       scrollTop: pos.top + settings.offset.top
     }, settings.speed, settings.easing, function() {
-      return settings.onAfter();
+      return dfd.resolve();
     });
+    return dfd;
   };
 
   converter = new Showdown.converter();

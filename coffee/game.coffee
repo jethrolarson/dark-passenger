@@ -19,7 +19,6 @@ $.on = (args...)->
 game = {
 	title: 'Dark Passenger'
 	$game: $('#game')
-	$title: $('#title')
 	$content: $('#content')
 	$links: $('#links')
 	locations: {}
@@ -27,62 +26,55 @@ game = {
 		cache.links = cache.links || {};
 		@bindEvents()
 		@locations = window.loc
-		@start()
+		@render()
+		$.scrollTo $('.passage').last(), duration: 0
 	bindEvents: ->
-		$w.bind 'cmd',(e,c)=>
-			$.scrollTo @renderCmd c
+		self = this
 		$.on 'click', 'a', (e)->
 			hash = @hash
 			if @hash
 				$t = $ hash
 				if $t.length
 					$('.passage').removeClass 'on'
-					$.scrollTo $t.addClass 'on', onAfter: ->
+					$t.addClass 'on'
+					$.scrollTo($t).done ->
 						location.hash = hash
-
 				else
-					cmd @hash.slice 1
+					ar = getCmds()
+					ar.push @hash.slice 1
+					set 'cmd', ar
+					self.render()
+					$.scrollTo $('.passage').last()
 			e.preventDefault()
+		
 	renderCmd: (c)->
 		$('.passage').removeClass 'on'
-		$('a').each ->
-			if @hash is '#'+c
-				$(this).addClass 'clicked'
 		lookupArray = c.split('_')
 		data = lookupOb @locations,lookupArray
-		newContent = $ '<div class="passage on" id="'+c+'">'+@parseContent(data.content)+'</div>'
-		newContent.addClass(data.className) if data.className
-
-		@$content.append newContent
-		return newContent
+		"""<div class="passage #{if data.className then data.className else ''}" id="#{c}">#{@parseContent(data.content)}</div>"""
+		
 
 	render: (cmds)->
-		if not $.isArray cmds
-			cmds = [cmds]
-		@renderCmd c for c in cmds
-	newGame: ->
-		cache.clear()
-		@render('intro')
-	start: ->
 		cmds = getCmds()
-		if cmds.length
-			@render cmds
-		else
-			cmd 'intro'
+		content = ''
+		if not $.isArray(cmds) or cmds.length is 0
+			cmds = set 'cmd', ['intro']
+		for c in cmds
+			content += @renderCmd c 
+		content = $ content
+		$('a',content).each (i,el)=>
+			for v in cmds
+				if el.hash is '#'+v
+					$(el).addClass 'clicked'
+					break
+		@$content.html content
 	parseContent: (txt)->
 		txt = tmpl(txt)(this)
 		return converter.makeHtml(txt)
 }
 window.cache = localStorage
 
-w.cmd = (cmd)->
-	$w.trigger 'cmd', cmd
-	ar = getCmds()
-	ar.push cmd
-	set 'cmd', ar
-	ar
-
-w.getCmds = -> (get 'cmd') or []
+w.getCmds = -> w.get('cmd') or []
 
 w.set = (key,val)->
 	val = JSON.stringify val
@@ -90,7 +82,8 @@ w.set = (key,val)->
 		window.cache[key] = val
 	catch e
 		alert e
-	
+		return undefined
+	return val
 w.get = (key)->
 	val = window.cache[key]
 	return if val then JSON.parse val else undefined
@@ -100,17 +93,19 @@ $.scrollTo = (selector, settings)->
 		offset: {
 			top: 0
 		},
-		onAfter: $.noop,
 		duration: 400
 	}, settings
+	dfd = $.Deferred()
 	pos = $(selector).offset()
-	$('html,body').animate {
+	$('html,body').animate({
 			scrollTop: pos.top + settings.offset.top
 		},
 		settings.speed,
 		settings.easing,
 		->
-			settings.onAfter()
+			dfd.resolve()
+	)
+	return dfd
 
 converter = new Showdown.converter()
 

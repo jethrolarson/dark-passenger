@@ -8,11 +8,11 @@
     'sprawling-mansion': {
       content: "After a [long walk](#sprawling-mansion_long-walk) up the nastiest dirt road I've ever seen I finally arrive at the Smith/McCaskill family [homestead](#sprawling-mansion_detail).\n\n[Hiro](#hiro) is sitting on the bent armrest of the [porch couch](#sprawling-mansion_couch).",
       "long-walk": {
-        content: "My legs ache and I've gotten far too little sleep for what I know is ahead. I almost wish I'd accepted the ride from [Billy](#billy) at the store. At least his three-wheeler could have dropped me off where the road became completely impassible, provided I survive the ride, of course.",
+        content: "I almost wish I'd accepted the ride from Billy at the store. At least his three-wheeler could have dropped me off where the road became completely impassible, provided I survive the ride, of course.",
         className: 'aside'
       },
       "detail": {
-        content: "If there was a <em>Lifestyles of the Broke and Obscure</em> this place would be the season finale. \n\nThe marriage of Hiro McCaskill and Crystyl Smith ended a four-generation feud. To celebrate the families moved their five trailers to hobble ridge where they would share water rights over Bolt Creek. The result resembles a mobile home destruction derby infested with feral animals.\n\nThe trailer amalgamation is cut down the middle, with various cutting tools piled around the split. I guess the divorce proceedings are finally underway.",
+        content: "If there was a <em>Lifestyles of the Broke and Obscure</em> this place would be the season finale. \n\nThe marriage of [Hiro](#hiro) McCaskill and Crystyl Smith ended a four-generation feud. To celebrate the families moved their five trailers to Hobble Ridge where they would share water rights over Bolt Creek. The result resembles a mobile home destruction derby infested with feral animals.\n\nThe trailer amalgamation is cut down the middle, with various cutting tools piled around the split. I guess the divorce proceedings are finally underway.",
         className: 'aside'
       },
       "couch": {
@@ -20,30 +20,70 @@
         className: 'aside'
       }
     },
-    billy: {
-      content: "Billy was grossly overweight, dirty, and had the kind of independence that only comes from years of government assistance. I'd sewn up a gash on his leg last week. He had wrecked his 3 wheeler jumping it out of the bed of a lifted pickup. Today he was wearing shorts again and it looked like he pulled out his own stitches. \n\nSome people are accident prone, Billy was safety impaired. ",
-      className: 'aside'
-    },
     hiro: {
-      content: "<%cache._Hiro = \"hiro\";%>\n<%if(!cache.hiro_examined){%>\n  Hiro's nephew, Jimmy woke me late last night, pounding on my door and saying his cousin, Jessica had been [possessed](#hiro_possession) and went on a rampage. The [bloody rag](#hiro_examination) on Hiro's neck tells me his daughter's freakout was extraordinary.\n<%}else{%>\n  \n  Hiro sways slowly from side to side. It is apparently taking all his attention to keep his pain under control. I hope I can do something for him soon.\n  The bloody rag is still bright with fresh blood.\n  Jin thinks \"[the yellowing](#hiro_wound_jin)\" has started, whatever that means.\n<%}%>",
+      content: "Hiro's nephew woke me late last night, pounding on my door and saying his cousin, Jessica had been [possessed](#hiro_possession) and went on a rampage. The [bloody rag](#hiro_examination) on Hiro's neck tells me his daughter's freakout was extraordinary.",
+      report: {
+        content: ""
+      },
       possession: {
         content: "Coming here is like stepping into a world where the renaissance never happened. Any illness that can't be healed with alcohol, pot, or the contents under the sink is clearly the work of evil spirits. The last \"possession\" I had to deal with turned out to be shingles. ",
         className: 'aside'
       },
       examination: {
-        content: "<%if(cache.hiro_examined){%>\n  From Memory:\n<%}%>\n<%cache.hiro_examined=true;%>\n\"How you holding up?\" I ask.\n\n\"Worse'n Jess, I hope\".\n\n\"Considering how you look, I hope so too. How's the wound?\"\n\n\"Terrible. Won't stop bleeding.\" A pained, exhausted look crosses his face as he glances toward the rag. The blood has a [yellowish tinge](#hiro_examination2)."
+        content: "\"How you holding up?\" I ask.\n\n\"Worse'n Jess, I hope\".\n\n\"Considering how you look, I hope so too.\" Hiro is swaying from side to side. It's taking all his attention to keep his pain under control. \"How's the [wound](#hiro_askwound)?\" I ask.\n\n"
       },
-      examination2: {
-        content: "<i>\"Sweet, the [yellowing](#hiro_wound_jin)! He'll be lots of fun tonight.\"</i>, Jin says\n\n\"Oh? What happens then?\" I ask.\n\nHiro gives me a confused look. I keep forgetting that no one else can hear [Jin](#jin).\n\"I guess eventually I'll die,\" Hiro says.\n\nJin laughs in my head.\n\n\"Maybe you would like to \n[check it out](#hiro_wound)?\" Hiro asks\nsoberly."
+      askwound: {
+        content: "\"Super,\" Hiro says. A pained, exhausted look crosses his face as he glances toward the rag. The blood has a [yellowish tinge](#hiro_tinge)."
+      },
+      tinge: {
+        content: "\"Is that iodine?\", I ask, stepping a little closer.\n\n\"No. I put some [moonshine](#hiro_possession) on it but that just made it worse. Taking some orally had better results\", Hiro says.\n\n<%if(!get('closerlook')){%>\n  [Take a closer look](#hiro_closerlook)\n<%}%>"
+      },
+      closerlook: {
+        content: "Hiro pulls the rag off the wound. I cringe at the fist sized area of his neck that's just meat, and not good meat. It's like some kind of abominable afterbirth, veiny and raw. It's actively weeping the [iodine colored fluid](#hiro_wound).",
+        callback: function() {
+          return set('closerlook');
+        }
       },
       wound: {
-        content: "  I nod and step forward. As I approach him the smell of old meat \n  and tooth decay hits me.\n\n  Hiro pulls the rag off the wound. I cringe at the fist sized area of his neck that's just meat, and not good meat. It's like some kind of abominable afterbirth, veiny and raw. It's actively weeping a strange [iodine colored fluid](#hiro_wound_sample). ",
+        content: "\"It wont stop bleeding,\" Hiro says.\n\n<i>\"Sweet, the [yellowing](#hiro_wound_jin)! He'll be lots of fun tonight.\"</i>, [Jin](#jin) says\n\n\"Oh? What happens then?\" I ask.\n\nHiro gives me a confused look. I keep forgetting that no one else can hear [Jin](#jin).\n\"I guess eventually I'll die,\" Hiro says.\n\nJin laughs in my head.",
         jin: {
-          content: "<%if(cache.askedJinWound){%>\n  From Memory:\n<%}%>\n<%cache.askedJinWound = \"true\";%>\n\"What is this yellowing? How do I cure him?\" I mutter under my breath hoping only Jin will hear.\n\n<i>I don't <em>do</em> cures but I think the [stick](#stick_intro) might know some way to get rid of it.</i>\n\n\"So what is the yellowing really called? I don't want to play 20 questions with the damn stick.\" \n\n<i>\"You're no fun. It's called <b>The Creeping Dream</b>, a lovely curse that grows a malevolent tumor.\"</i>\n\n\"I don't suppose you mean *malignant*.\"\n\n<i>Nope, and when it gets big enough it'll try to escape. I'm guessing you don't want that as much as I do.</i>"
+          content: "\"What is this yellowing? How do I cure him?\" I mutter under my breath hoping only [Jin](#jin) will hear.\n\n<i>I don't <b>do</b> cures but I think the [stick](#stick_intro) might tell you some way to get rid of it.</i>\n\n",
+          yellowing2: {
+            content: "  \"So what is the yellowing really called? I don't want to play 20 questions with the damn stick.\"\n\n  <i>\"You're no fun. It's called <b>The Creeping Dream</b>, a lovely curse that grows a malevolent tumor.\"</i>\n\n\"I don't suppose you mean *malignant*.\"\n\n<i>Nope, and when it gets big enough it'll try to escape. I'm guessing you don't want that as much as I do.</i>"
+          }
         },
         sample: {
-          content: "<%cache.tookSample = \"true\";%>\n\"Is that iodine?\", I ask.\n\n\"No. I put some Everclear on it but that just made it worse. Taking some orally had better results\", Hiro said.\n\nI pull a vial from my satchel and collect some of the yellowish fluid.\n\n<i>What do you think you're going to do with that?</i>\n\n\"I'm not really sure at the moment. It could just be pus, but I don't have the tools to be sure.\""
+          content: "\n\nI pull a vial from my satchel and collect some of the yellowish fluid.\n\n<i>What do you think you're going to do with that?</i>\n\n\"I'm not really sure at the moment. It could just be pus, but I don't have the tools to be sure.\""
         }
+      }
+    },
+    stick: {
+      content: "<%cache._Stick = \"stick\";%>\nIt's a strange snake-shaped artifact I found in the shell of a burnt camper shell. At the time I thought it was weird that a pyrex lantern had melted but a whittled stick was fine. It makes sense to me now.\n\nI ask about...\n[The cure to The Creeping Dream](#<%if(!cache.dream_asked){%>stick_<%}%>creeping-dream)",
+      intro: {
+        content: "I pull the talking stick from my satchel. It's wrapped in an anti-static bag I got from the computer guy at the school -- the only thing that's managed to stop the itching. [Hiro](#stick_askhiro) looks at it with interest."
+      },
+      askhiro: "\"I don't suppose you have a clue what's happening, Hiro?\"\n\nHiro shakes his head.\n\nMy hands are trembling as I [unwind the rubber band](#stick)  holding the bag shut.",
+      callback: function() {
+        return set('stick_on');
+      },
+      'creeping-dream': {
+        content: "I hold the stick in front of me and turn it's lightly carved face to look back into my eyes. It immediately turns into a inky black viper, wrapping it's tail around my wrist. It lurches up toward my face it's fangs exposed. Every nerve in my body screams in panic but somehow I resist. It looks me straight in the eye.\n\n\"How do I cure The Creeping Dream?\" I ask. It blinks once at me and suddenly is a stick in my hand again. I start to [remember](#stick_creeping-dream_answer).",
+        answer: {
+          content: "I start to remember what the stick knows. I put the scattered and nonsensical pieces back together like a fleeting dream. And like a dream I can't know if I'm [remembering it](#creeping-dream) right.\n"
+        }
+      }
+    },
+    jin: {
+      content: "I got Jin kicked out of his last home and so he's staying with me. It turns out exorcism is harder than it looks.",
+      className: 'aside'
+    },
+    'creeping-dream': {
+      content: "<%cache._Curse = \"creeping-dream\";%>\nThe Creeping Dream is a <%if(cache.parasite){%> curse <%}else{%> [curse](#creeping-dream_curse) <%}%> caused by a powerful <%if(cache.mara){%>Mara, a chaotic spirit that causes nightmares<%}else{%>[Mara](#creeping-dream_mara)<%}%>.\n\n<%if(cache.parasite){%>\n  The parasites can be destroyed by shaming the host while they're in water.\n\n  The curse itself is attached to some object that the afflicted loves. Break that love and then destroy the item with fire.\n<%}%>",
+      mara: {
+        content: "<%cache.mara = true;%>\nA Mara is a chaotic spirit that causes nightmares."
+      },
+      curse: {
+        content: "<%cache.parasite = true;%>\nThe curse causes the afflicted to attack all sentient creatures. Bites from the cursed infect targets with spiritual parasites that transform parts of their bodies into hosts for imps.\n\nThe curse itself is attached to a physical object that the host loves, to break it you must make the host no longer love the object then destroy it with fire."
       }
     },
     'living-room': {
@@ -64,53 +104,114 @@
         content: "I step toward the door and reach toward the blanket.\n<% cache.father_in_living_room = \"true\";%>"
       }
     },
-    stick: {
-      content: "<%cache._Stick = \"stick\";%>\nIt's a strange snake-shaped artifact I found in the shell of a burnt camper shell. At the time I thought it was weird that a pyrex lantern had melted but a whittled stick was fine. It makes sense to me now.\n\nI ask about...\n[The cure to The Creeping Dream](#<%if(!cache.dream_asked){%>stick_<%}%>creeping-dream)",
-      intro: {
-        content: "I pull the talking stick from my satchel. It's wrapped in an anti-static bag I got from the computer guy at the school -- the only thing that's managed to stop the itching. \n\n\"I don't suppose you have a clue what's happening, Hiro?\" My hands are shaking as I unwind the rubber bands holding the bag shut.\n\nHiro shakes his head.\n\n\"Damn.\" I put Hiro's rag back on his shoulder. \"Excuse me a moment\". I step aside and [produce the stick](#stick).",
-        callback: function() {
-          return set('stick_on');
-        }
-      },
-      'creeping-dream': {
-        content: "I hold the stick in front of me and turn it's lightly carved face to look back into my eyes. It immediately turns into a inky black viper, wrapping it's tail around my wrist. It lurches up toward my face it's fangs exposed. Every nerve in my body screams in panic but somehow I resist. It looks me straight in the eye.\n\n\"How do I cure The Creeping Dream?\" I ask. It blinks once at me and suddenly is a stick in my hand again. I start to [remember](#stick_creeping-dream_answer).",
-        answer: {
-          content: "I start to remember what the stick knows. I put the scattered and nonsensical pieces back together like a fleeting dream. And like a dream I can't know if I'm [remembering it](#creeping-dream) right.\n"
-        }
-      }
-    },
-    jin: {
-      content: "<%cache._Jin = \"jin\";%>\nJin is my cross to bear; the kind of cross that whispers evil shit in your ear constantly, makes you weak, insecure, and occasionally summons swarms of black flies out of nowhere.\n\nI used to be an aggressive atheist, as if shooting down other's beliefs made their lives better. Here people start drawing guns if you tell them that bigfoot is a myth. So I played around their insanity to keep the peace. \n\nIt turns out that exorcism is harder than it looks.",
+    billy: {
+      content: "Billy was grossly overweight, dirty, and had the kind of independence that only comes from years of government assistance. I'd sewn up a gash on his leg last week. He had wrecked his 3 wheeler jumping it out of the bed of a lifted pickup. Today he was wearing shorts again and it looked like he pulled out his own stitches. \n\nSome people are accident prone, Billy was safety impaired. ",
       className: 'aside'
-    },
-    'creeping-dream': {
-      content: "<%cache._Curse = \"creeping-dream\";%>\nThe Creeping Dream is a <%if(cache.parasite){%> curse <%}else{%> [curse](#creeping-dream_curse) <%}%> caused by a powerful <%if(cache.mara){%>Mara, a chaotic spirit that causes nightmares<%}else{%>[Mara](#creeping-dream_mara)<%}%>.\n\n<%if(cache.parasite){%>\n  The parasites can be destroyed by shaming the host while they're in water.\n\n  The curse itself is attached to some object that the afflicted loves. Break that love and then destroy the item with fire.\n<%}%>",
-      mara: {
-        content: "<%cache.mara = true;%>\nA Mara is a chaotic spirit that causes nightmares."
-      },
-      curse: {
-        content: "<%cache.parasite = true;%>\nThe curse causes the afflicted to attack all sentient creatures. Bites from the cursed infect targets with spiritual parasites that transform parts of their bodies into hosts for imps.\n\nThe curse itself is attached to a physical object that the host loves, to break it you must make the host no longer love the object then destroy it with fire."
-      }
     }
   };
 
-  ({
-    bedroom: {
-      content: "The family sleeps together in this small room. There's bedrolls on the floor, and writings hanging on the wall, presumably from some religious text.\n\nThere's a portrait on the wall of some ancestor, it's very old. The painting seems to look at you.\nEXAMINE shows close up and VIEW BACK option. The back shows the back of the person. There is otherwise nothing special.\n\nThere's a small table on one side of the room. On it is some incense that you can pick up. DP says he hates jasmine as you pick it up. Obove the table is a mirror facing the door. EXAMINE Shows the reflection. In it is a strange doll with a damaged arm. You can grab the doll through the mirror.",
-      'support-beam': {
-        title: "Support Beam",
-        content: " \nThere's a central support where the girl is tied.\n\nThere are scratches around the base of the pole where the girl has been\ntrying to get free and blood has soaked into the wood.",
-        hiro: {
-          content: " \nHiro: \nSo?\n\nBILL\nHuh?\n\nHiro:\nCan you help her?\nThe little girl's clothes are shredded. Her sleves are caked in dirt and blood. She's growling and screeching in tongues. has crazy eyes, jagged teeth and sharpened claws."
-        },
-        girl: {
-          content: "\"Let me get a closer look.\" I say. I approach and bend down.\nI'd seen people go crazy before so I'm not too worried. She seems \n[pretty calm](?q=examine-girl) at the moment."
-        },
-        'examine-girl': {
-          content: "I reach toward her. Zoom to her face. Her eyes go crazy. She looses a hand and claws at Bill, scratching the back of his hand.\n\nBill jumps back, grabs his hand. The Hiro: dives on the girls arm ad manages to retie it.\n\nDARK PASSENGER(DP)\nHAHAHAHA! I told you this wasn't mundane.\n\nBILL\nInsanity doesn't mean she's possessed. We haven't ruled out rabies.\n\nHiro:\nWhat are rabies?\n\nBILL\nIt's a ailment caused by...animal bites.\n\nDP\nYou're going to want sake.\n\nBILL\nWhy? It's not even noon yet\n\nDP\nFor your hand.\n\nBILL\nIt's just a scratch--\nWe see POV of his hand, a little black bubble is there.\n\nBill pokes it and it erupts with a hundred black baby spiders. They pour down his arm and fall to the floor in a mess if tiny webs. He screams and tries to shake them off. The girl screeches with evil laughter.\n\nBILL\nSake! Please!\n\nHiro dashes out of the room. Comes back with a ceramic bottle and unstops it. Bill takes a big chug and chokes.\n\nDP\nNo, on your hand, moron.\n\nBill pours a bunch on his wound and winces at sting.\n\nDP\nThough I don't mind the sake.\n\nAfter a few seconds of heavy breathing he takes another swig from the bottle, then sighs. The spiders have disappeared.\n\nBILL\nAlright, you have my...attention.\n\nDP\nWell, look around, we don't know anything about this spirit yet."
-        }
-      }
-    }
-  });
+  /* unused crap below
+  bedroom:
+    content: """
+      The family sleeps together in this small room. There's bedrolls on the floor, and writings hanging on the wall, presumably from some religious text.
+  
+      There's a portrait on the wall of some ancestor, it's very old. The painting seems to look at you.
+      EXAMINE shows close up and VIEW BACK option. The back shows the back of the person. There is otherwise nothing special.
+  
+      There's a small table on one side of the room. On it is some incense that you can pick up. DP says he hates jasmine as you pick it up. Obove the table is a mirror facing the door. EXAMINE Shows the reflection. In it is a strange doll with a damaged arm. You can grab the doll through the mirror.
+    """
+    'support-beam': 
+      title: "Support Beam"
+      content: """ 
+        There's a central support where the girl is tied.
+  
+        There are scratches around the base of the pole where the girl has been
+        trying to get free and blood has soaked into the wood.
+      """
+      hiro: 
+        content: """ 
+          Hiro: 
+          So?
+          
+          BILL
+          Huh?
+          
+          Hiro:
+          Can you help her?
+          The little girl's clothes are shredded. Her sleves are caked in dirt and blood. She's growling and screeching in tongues. has crazy eyes, jagged teeth and sharpened claws.
+        """
+      girl: 
+        content: """
+          "Let me get a closer look." I say. I approach and bend down.
+          I'd seen people go crazy before so I'm not too worried. She seems 
+          [pretty calm](?q=examine-girl) at the moment.
+        """
+      'examine-girl': 
+        content: """
+          I reach toward her. Zoom to her face. Her eyes go crazy. She looses a hand and claws at Bill, scratching the back of his hand.
+  
+          Bill jumps back, grabs his hand. The Hiro: dives on the girls arm ad manages to retie it.
+  
+          DARK PASSENGER(DP)
+          HAHAHAHA! I told you this wasn't mundane.
+  
+          BILL
+          Insanity doesn't mean she's possessed. We haven't ruled out rabies.
+  
+          Hiro:
+          What are rabies?
+  
+          BILL
+          It's a ailment caused by...animal bites.
+  
+          DP
+          You're going to want sake.
+  
+          BILL
+          Why? It's not even noon yet
+  
+          DP
+          For your hand.
+  
+          BILL
+          It's just a scratch--
+          We see POV of his hand, a little black bubble is there.
+  
+          Bill pokes it and it erupts with a hundred black baby spiders. They pour down his arm and fall to the floor in a mess if tiny webs. He screams and tries to shake them off. The girl screeches with evil laughter.
+  
+          BILL
+          Sake! Please!
+  
+          Hiro dashes out of the room. Comes back with a ceramic bottle and unstops it. Bill takes a big chug and chokes.
+  
+          DP
+          No, on your hand, moron.
+  
+          Bill pours a bunch on his wound and winces at sting.
+  
+          DP
+          Though I don't mind the sake.
+  
+          After a few seconds of heavy breathing he takes another swig from the bottle, then sighs. The spiders have disappeared.
+  
+          BILL
+          Alright, you have my...attention.
+  
+          DP
+          Well, look around, we don't know anything about this spirit yet.
+        """
+  
+  Hiro sways slowly from side to side. It is apparently taking all his attention to keep his pain under control. I hope I can do something for him soon.
+          The bloody rag is still bright with fresh blood.
+          Jin thinks "[the yellowing](#hiro_wound_jin)" has started, whatever that means.
+  
+  
+  Jin is the kind of friend that whispers evil shit in your ear, makes you weak, insecure, and summons swarms of black flies for fun. Also he lives inside me.
+  
+  I used to be an aggressive atheist, as if shooting down other's beliefs made their lives better. Here people start drawing guns if you tell them that bigfoot is a myth. So I played around their insanity to keep the peace. 
+  
+  It turns out that exorcism is harder than it looks.
+  */
+
 
 }).call(this);
