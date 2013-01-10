@@ -42,16 +42,21 @@ game = {
 				else
 					ar = getCmds()
 					ar.push @hash.slice 1
+					passageCount = $('.passage').length
 					set 'cmd', ar
 					self.render()
-					$.scrollTo $('.passage').last()
+					if passageCount isnt $('.passage').length
+						$.scrollTo $('.passage').last()
 			e.preventDefault()
 		
 	renderCmd: (c)->
 		$('.passage').removeClass 'on'
 		lookupArray = c.split('_')
 		data = lookupOb @locations,lookupArray
-		"""<div class="passage #{if data.className then data.className else ''}" id="#{c}">#{@parseContent(data.content)}</div>"""
+		content = if data.content then @parseContent(data.content) else ''
+		if data.callback
+			data.callback()
+		return content and """<div class="passage #{if data.className then data.className else ''}" id="#{c}">#{content}</div>"""
 		
 
 	render: (cmds)->
@@ -69,29 +74,36 @@ game = {
 					break
 		@$content.html content
 	parseContent: (txt)->
-		txt = tmpl(txt)(this)
-		return converter.makeHtml(txt)
+		try
+			txt = tmpl(txt)(this)
+			return converter.makeHtml(txt)
+		catch e
+			return 'ERROR template failed: '+txt
 }
 window.cache = localStorage
 
 w.getCmds = -> w.get('cmd') or []
 
 w.set = (key,val)->
-	val = JSON.stringify val
 	try
-		window.cache[key] = val
+		window.cache[key] = JSON.stringify val
 	catch e
 		alert e
 		return undefined
 	return val
 w.get = (key)->
 	val = window.cache[key]
-	return if val then JSON.parse val else undefined
+	if val
+		try
+			JSON.parse val
+		catch e
+			undefined
+	else undefined
 
 $.scrollTo = (selector, settings)->
 	settings = $.extend {
 		offset: {
-			top: 0
+			top: -30
 		},
 		duration: 400
 	}, settings

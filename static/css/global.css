@@ -26,11 +26,14 @@ body{
 body.loading *{cursor: wait;}
 p{margin: 0 0 1em;}
 p:last-child{margin-bottom: 0;}
+
 #page{
   max-width: 650px; min-height:100%;
   margin:0 auto;
   background: #191919;}
-
+#content{
+  padding-top: 30px;
+}
 #links a{
   margin: 0 10px;
   font-size: 18px;}

@@ -47,7 +47,7 @@
       var self;
       self = this;
       return $.on('click', 'a', function(e) {
-        var $t, ar, hash;
+        var $t, ar, hash, passageCount;
         hash = this.hash;
         if (this.hash) {
           $t = $(hash);
@@ -60,20 +60,27 @@
           } else {
             ar = getCmds();
             ar.push(this.hash.slice(1));
+            passageCount = $('.passage').length;
             set('cmd', ar);
             self.render();
-            $.scrollTo($('.passage').last());
+            if (passageCount !== $('.passage').length) {
+              $.scrollTo($('.passage').last());
+            }
           }
         }
         return e.preventDefault();
       });
     },
     renderCmd: function(c) {
-      var data, lookupArray;
+      var content, data, lookupArray;
       $('.passage').removeClass('on');
       lookupArray = c.split('_');
       data = lookupOb(this.locations, lookupArray);
-      return "<div class=\"passage " + (data.className ? data.className : '') + "\" id=\"" + c + "\">" + (this.parseContent(data.content)) + "</div>";
+      content = data.content ? this.parseContent(data.content) : '';
+      if (data.callback) {
+        data.callback();
+      }
+      return content && ("<div class=\"passage " + (data.className ? data.className : '') + "\" id=\"" + c + "\">" + content + "</div>");
     },
     render: function(cmds) {
       var c, content, _i, _len,
@@ -105,8 +112,12 @@
       return this.$content.html(content);
     },
     parseContent: function(txt) {
-      txt = tmpl(txt)(this);
-      return converter.makeHtml(txt);
+      try {
+        txt = tmpl(txt)(this);
+        return converter.makeHtml(txt);
+      } catch (e) {
+        return 'ERROR template failed: ' + txt;
+      }
     }
   };
 
@@ -117,9 +128,8 @@
   };
 
   w.set = function(key, val) {
-    val = JSON.stringify(val);
     try {
-      window.cache[key] = val;
+      window.cache[key] = JSON.stringify(val);
     } catch (e) {
       alert(e);
       return void 0;
@@ -131,7 +141,11 @@
     var val;
     val = window.cache[key];
     if (val) {
-      return JSON.parse(val);
+      try {
+        return JSON.parse(val);
+      } catch (e) {
+        return void 0;
+      }
     } else {
       return void 0;
     }
@@ -141,7 +155,7 @@
     var dfd, pos;
     settings = $.extend({
       offset: {
-        top: 0
+        top: -30
       },
       duration: 400
     }, settings);

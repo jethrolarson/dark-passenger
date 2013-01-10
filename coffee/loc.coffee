@@ -21,30 +21,29 @@ window.loc =
       className: 'aside'
     "detail":
       content: """
-        If there was a <em>Lifestyles of the Broke and Obscure</em> this place would be the season finale. 
+        If there was a <em>Lifestyles of the Broke and Weird</em> this place would be the season finale. 
 
-        The marriage of [Hiro](#hiro) McCaskill and Crystyl Smith ended a four-generation feud. To celebrate the families moved their five trailers to Hobble Ridge where they would share water rights over Bolt Creek. The result resembles a mobile home destruction derby infested with feral animals.
-
-        The trailer amalgamation is cut down the middle, with various cutting tools piled around the split. I guess the divorce proceedings are finally underway.
+        The marriage of [Hiro](#hiro) McCaskill and Crystyl Smith ended a four-generation feud. To celebrate the families moved their five trailers to Hobble Ridge where they would share water rights over Bolt Creek. The result looks like the aftermath of a [mobile home destruction derby](#sprawling-mansion_divorce) infested with feral animals.
+      """
+      className: 'aside'
+    "divorce": 
+      content: """
+        The trailer amalgamation is cut down the middle, with rusted cutting tools piled around the split. I guess the divorce proceedings are finally underway.
       """
       className: 'aside'
     "couch":
       content:"""
-        A porch couch is the decrepit husk of a former living room couch that has been exposed to the elements. And by elements I mean 5 filthy dogs and El Niño. The dogs are strangely absent today.
+        A porch couch is the decrepit husk of a former sofa that has been exposed to the elements. And by elements I mean 5 filthy dogs and El Niño. The dogs are strangely absent today.
       """
       className: 'aside'
 
   hiro:
     content: """
-      Hiro's nephew woke me late last night, pounding on my door and saying his cousin, Jessica had been [possessed](#hiro_possession) and went on a rampage. The [bloody rag](#hiro_examination) on Hiro's neck tells me his daughter's freakout was extraordinary.
+      Hiro's nephew woke me late last night, pounding on my door and saying his cousin, Jessica went on a rampage. The [bloody rag](#hiro_examination) on Hiro's neck tells me his daughter's freakout was extraordinary.
     """
-    report:
-      content: """
-
-      """
     possession: 
       content: """
-        Coming here is like stepping into a world where the renaissance never happened. Any illness that can't be healed with alcohol, pot, or the contents under the sink is clearly the work of evil spirits. The last "possession" I had to deal with turned out to be shingles. 
+        Coming here is like stepping into a world where the renaissance never happened. Any illness that can't be healed with alcohol, pot, or the contents under the sink is clearly the work of evil spirits.
       """
       className: 'aside'
     examination:
@@ -65,7 +64,7 @@ window.loc =
       content: """
         "Is that iodine?", I ask, stepping a little closer.
 
-        "No. I put some [moonshine](#hiro_possession) on it but that just made it worse. Taking some orally had better results", Hiro says.
+        "No. I put some ['shine](#hiro_possession) on it but that just made it worse. Taking some orally had better results", Hiro says.
 
         <%if(!get('closerlook')){%>
           [Take a closer look](#hiro_closerlook)
@@ -95,8 +94,6 @@ window.loc =
           "What is this yellowing? How do I cure him?" I mutter under my breath hoping only [Jin](#jin) will hear.
           
           <i>I don't <b>do</b> cures but I think the [stick](#stick_intro) might tell you some way to get rid of it.</i>
-
-          
         """
         yellowing2:
           content: """
@@ -110,8 +107,6 @@ window.loc =
           """
       sample: 
         content: """
-          
-          
           I pull a vial from my satchel and collect some of the yellowish fluid.
 
           <i>What do you think you're going to do with that?</i>
@@ -122,35 +117,34 @@ window.loc =
     content: """
       <%cache._Stick = "stick";%>
       It's a strange snake-shaped artifact I found in the shell of a burnt camper shell. At the time I thought it was weird that a pyrex lantern had melted but a whittled stick was fine. It makes sense to me now.
-      
-      I ask about...
-      [The cure to The Creeping Dream](#<%if(!cache.dream_asked){%>stick_<%}%>creeping-dream)
     """
+    className: "aside"
     intro:
       content: """
-        I pull the talking stick from my satchel. It's wrapped in an anti-static bag I got from the computer guy at the school -- the only thing that's managed to stop the itching. [Hiro](#stick_askhiro) looks at it with interest.
+        I pull the [talking stick](#stick) from my satchel. It's wrapped in an anti-static bag I got from the computer guy at the school--the only thing that's managed to stop the itching. [Hiro](#stick_askhiro) looks at it with interest.
         """
-    askhiro: """
-      "I don't suppose you have a clue what's happening, Hiro?"
-      
-      Hiro shakes his head.
+    askhiro: 
+      content: """
+        "I don't suppose you have a clue what's happening, Hiro?"
+        
+        Hiro shakes his head.
 
-      My hands are trembling as I [unwind the rubber band](#stick)  holding the bag shut.
-    """
-    callback: ->
-      set 'stick_on'
+        My hands are trembling as I [unwind the rubber band](#stick_ask) holding the bag shut.
+      """
+    ask:
+      content: """
+        I hold the stick in front of me and turn it's lightly carved face to look back [into my eyes](#stick_creeping-dream).
+      """
+    callback: -> set 'stick_on', true
     # This is the first question you can ask so I'm including more description here than I will on future questions.
     'creeping-dream': 
       content: """
-        I hold the stick in front of me and turn it's lightly carved face to look back into my eyes. It immediately turns into a inky black viper, wrapping it's tail around my wrist. It lurches up toward my face it's fangs exposed. Every nerve in my body screams in panic but somehow I resist. It looks me straight in the eye.
+         The stick is now a inky black viper wrapping it's tail around my wrist. It lurches up toward my face its fangs exposed. Every nerve in my body screams in panic but somehow I resist. It looks me straight in the eye.
 
-        "How do I cure The Creeping Dream?" I ask. It blinks once at me and suddenly is a stick in my hand again. I start to [remember](#stick_creeping-dream_answer).
+        "How do I cure [The Creeping Dream](#stick_answer)?" I ask. It blinks once at me and suddenly is a stick in my hand again.
       """
-      answer:
-        content:"""
-          I start to remember what the stick knows. I put the scattered and nonsensical pieces back together like a fleeting dream. And like a dream I can't know if I'm [remembering it](#creeping-dream) right.
-
-        """
+    answer:
+      content:"""<%if(!get('remember')){%>I start to [remember](#creeping-dream) what the stick knows, putting the scattered pieces back together like a fleeting dream.<%}%>"""
   jin: 
     content: """
       I got Jin kicked out of his last home and so he's staying with me. It turns out exorcism is harder than it looks.
@@ -158,27 +152,25 @@ window.loc =
     className: 'aside'
   'creeping-dream':
     content: """
-      <%cache._Curse = "creeping-dream";%>
-      The Creeping Dream is a <%if(cache.parasite){%> curse <%}else{%> [curse](#creeping-dream_curse) <%}%> caused by a powerful <%if(cache.mara){%>Mara, a chaotic spirit that causes nightmares<%}else{%>[Mara](#creeping-dream_mara)<%}%>.
-      
-      <%if(cache.parasite){%>
-        The parasites can be destroyed by shaming the host while they're in water.
-
-        The curse itself is attached to some object that the afflicted loves. Break that love and then destroy the item with fire.
-      <%}%>
+      <%if(!get('curse')){%>
+      ... ....... ..... .. . [.....](#creeping-dream_curseon)
+      <%}else{%>
+      The Creeping Dream is a [curse](#creeping-dream_curse)
+      <%}%><%if(!get('mara')){%>...... .. . ...... .. [..........](#creeping-dream_maraon).<%}else{%>caused by a spirit of nightmares.<%}%>
+      <%if(get('curse') && get('mara')){%>My head starts to pound. Making memories hurts when you do it all at once.<%}%>
     """
-    mara:
-      content: """
-      <%cache.mara = true;%>
-      A Mara is a chaotic spirit that causes nightmares.
-    """
+    callback: -> set 'remember',true
+    maraon:
+      callback: -> set 'mara', true
+    curseon:
+      callback: -> set 'curse', true
     curse: 
       content: """
-      <%cache.parasite = true;%>
-      The curse causes the afflicted to attack all sentient creatures. Bites from the cursed infect targets with spiritual parasites that transform parts of their bodies into hosts for imps.
+        The curse sends the victim into a murderous rage. Bites from the cursed infect targets with [parasites](#creeping-dream_parasites) that transform parts of their bodies into hosts for imps.
 
-      The curse itself is attached to a physical object that the host loves, to break it you must make the host no longer love the object then destroy it with fire.
-    """
+        The curse itself is attached to a physical object that the host loves, to break it you must make the host no longer love the object then destroy it with fire.
+      """
+      className: 'aside'
 
   'living-room': 
     content: """
@@ -204,7 +196,7 @@ window.loc =
         "What a mess." I look around the chaos. "I'm guessing this
         started at dinner time?"
       
-        "Yes. Just before sunset yesterday." <b>Hiro</b> answers.
+        "Yes. Just before sunset yesterday." Hiro answers.
       """
     smell:
       content: """
