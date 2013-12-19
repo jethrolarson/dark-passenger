@@ -4,11 +4,10 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title id="page_title">Dark Passenger</title>
-  <link rel="stylesheet" href="/static/css/css-reset.css"/>
-  <link rel="stylesheet" href="/static/css/css-set.css"/>
+  <link rel="stylesheet" href="/css/css-reset.css"/>
+  <link rel="stylesheet" href="/css/css-set.css"/>
   <link href='http://fonts.googleapis.com/css?family=Tinos' rel='stylesheet'/>
-  <link rel="stylesheet" href="/static/css/global.css"/>
-  {%block css%}{%endblock%}
+  <link rel="stylesheet" href="/css/global.css"/>
   <!--[if IE]>
   <script src="js/html5.js"></script>
   <![endif]-->
@@ -22,7 +21,7 @@
   <div id="page">
     <div id="game">
       <iframe style="position: fixed" width="650" height="30" src="http://www.youtube.com/embed/3RxxNFMMN_o?feature=bf_next&list=PL-flML9P6x_o5QiyKY-YmZp5pFl2RTTTW&autoplay=1&loop=1&modestbranding=1&autohide=0" frameborder="0"></iframe>
-      <div id="content">{%block canvas%}{%endblock%}</div>
+      <div id="content"></div>
       <footer id="links" class="cf">
         <a class="reset" onclick="if(confirm('Start over from the beginning?')){localStorage.clear();location.reload();}">Restart</a>
       </footer>
@@ -31,11 +30,10 @@
     </div>
   </div>
   
-  <script src="/static/js/jquery.min.js"></script>
-  <script src="/static/js/tmpl.js"></script>
-  <script src="/static/js/showdown.js"></script>
-  <script src="/static/js/loc.js"></script>
-  <script src="/static/js/game.js"></script>
-  {%block scripts%}{%endblock%}
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/tmpl.js"></script>
+  <script src="/js/showdown.js"></script>
+  <script src="/js/loc.js"></script>
+  <script src="/js/game.js"></script>
 </body>
 </html>
