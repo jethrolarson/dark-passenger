@@ -4,7 +4,7 @@ Stateful Interactive Hypertext Fiction
 --------------------------------------
 
 Story copyright 2009-2014 Jethro Larson. 
-Engine(HTML, CSS, JS, python) Licensed under [WTFPL](http://sam.zoy.org/wtfpl/)
+Engine(HTML, CSS, JS, python) Licensed under [MIT](http://opensource.org/licenses/MIT) or [WTFPL](http://sam.zoy.org/wtfpl/) at your discretion.
 
 Hi, 
 

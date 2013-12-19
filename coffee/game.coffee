@@ -34,7 +34,7 @@ game = {
 			hash = @hash
 			if @hash
 				$t = $ hash
-				$(this).addClass 'clicked'
+				$(this).add("a[href='#{hash}']").addClass 'clicked'
 				if $t.length
 					$('.passage').removeClass 'on'
 					$t.addClass 'on'
@@ -71,7 +71,7 @@ game = {
 			content += @renderCmd c, i is c.length-1
 		content = $ content
 		$('a',content).each (i,el)=>
-			
+			#TODO this could be way more performant
 			for v in cmds
 				if el.hash is '#'+v
 					$(el).addClass 'clicked'
