@@ -48,7 +48,7 @@ game = {
 					self.$content.append self.renderCmd ar[ar.length-1]
 					if passageCount isnt $('.passage').length
 						$.scrollTo $('.passage').last()
-			e.preventDefault()
+				e.preventDefault()
 		
 	renderCmd: (c)->
 		$('.on').removeClass 'on'

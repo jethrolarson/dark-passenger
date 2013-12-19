@@ -173,7 +173,14 @@ window.loc =
         The curse itself is attached to a physical object that the host loves, to break it you must make the host no longer love the object then destroy it with fire.
       """
       className: 'aside'
+    parasites: 
+      content: """
+        Author's Note: This is as far as I've gotten with the story. Shoot me an email [jethrolarson@gmail.com](mailto:jethrolarson@gmail.com) or tweet at me [@jethrolarson](https://twitter.com/jethrolarson) if you'd like to see me write more. Also if you're a writer interested in writing this kind of story I'd love to hear from you.
 
+        Thanks,
+
+        -jethro
+      """
   'living-room': 
     content: """
       The morning sun gave me hope that today would be warm, but there's no 
