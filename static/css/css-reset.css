@@ -5,73 +5,92 @@ v1.4
 Author: Richard Clark - http://richclarkdesign.com
 */
 
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
-del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var,
-b, i,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, dialog, figure, footer, header, 
-hgroup, menu, nav, section, menu,
-time, mark, audio, video {
-	margin:0;
-	padding:0;
-	border:0;
-	outline:0;
-	font-size:100%;
-	vertical-align:baseline;
-	background:transparent;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
 }
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+html {
+    font-family: sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
 body {
-	line-height:1;
+    margin: 0;
 }
 
-article, aside, dialog, figure, footer, header, content,
-hgroup, nav, section { 
-	display:block;
-}
 
-nav ul {
-	list-style:none;
-}
-
-blockquote, q {
-	quotes:none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content:'';
-	content:none;
-}
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
 
 a {
-	margin:0;
-	padding:0;
-	border:0;
-	font-size:100%;
-	vertical-align:baseline;
-	background:transparent;
+    background: transparent;
 }
 
-ins {
-	background-color:#ff9;
-	color:#000;
-	text-decoration:none;
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
 }
 
-mark {
-	background-color:#ff9;
-	color:#000;	
-	font-style:italic;
-	font-weight:bold;
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
 }
 
-del {
-	text-decoration: line-through;
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre-wrap;
 }
 
 abbr[title], dfn[title] {
@@ -79,20 +98,11 @@ abbr[title], dfn[title] {
 	cursor:help;
 }
 
-table {
-	border-collapse:collapse;
-	border-spacing:0;
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+
+img {
+    border: 0;
 }
 
-hr {
-    display:block;
-    height:1px;
-    border:0;	
-    border-top:1px solid #cccccc;
-    margin:1em 0;
-    padding:0;
-}
-
-input, select {
-	vertical-align:middle;
-}
