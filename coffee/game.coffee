@@ -34,6 +34,7 @@ game = {
 			hash = @hash
 			if @hash
 				$t = $ hash
+				$(this).addClass 'clicked'
 				if $t.length
 					$('.passage').removeClass 'on'
 					$t.addClass 'on'
@@ -44,18 +45,20 @@ game = {
 					ar.push @hash.slice 1
 					passageCount = $('.passage').length
 					set 'cmd', ar
-					self.render()
+					self.$content.append self.renderCmd ar[ar.length-1]
 					if passageCount isnt $('.passage').length
 						$.scrollTo $('.passage').last()
 			e.preventDefault()
 		
 	renderCmd: (c)->
-		$('.passage').removeClass 'on'
+		$('.on').removeClass 'on'
 		lookupArray = c.split('_')
 		data = lookupOb @locations,lookupArray
 		content = if data.content then @parseContent(data.content) else ''
 		if data.callback
 			data.callback()
+		if data.rerender
+			$('#'+data.rerender).after(@renderCmd data.rerender).remove()
 		return content and """<div class="passage #{if data.className then data.className else ''}" id="#{c}">#{content}</div>"""
 		
 
@@ -64,10 +67,11 @@ game = {
 		content = ''
 		if not $.isArray(cmds) or cmds.length is 0
 			cmds = set 'cmd', ['intro']
-		for c in cmds
-			content += @renderCmd c 
+		for c,i in cmds
+			content += @renderCmd c, i is c.length-1
 		content = $ content
 		$('a',content).each (i,el)=>
+			
 			for v in cmds
 				if el.hash is '#'+v
 					$(el).addClass 'clicked'
@@ -80,13 +84,14 @@ game = {
 		catch e
 			return 'ERROR template failed: '+txt
 }
-window.cache = localStorage
-
-w.getCmds = -> w.get('cmd') or []
+w.cache = localStorage
+w.commands = undefined
+w.getCmds = -> 
+	w.commands = w.commands or w.get('cmd') or []
 
 w.set = (key,val)->
 	try
-		window.cache[key] = JSON.stringify val
+		w.commands[key] = w.cache[key] = JSON.stringify val
 	catch e
 		alert e
 		return undefined
@@ -105,14 +110,14 @@ $.scrollTo = (selector, settings)->
 		offset: {
 			top: -30
 		},
-		duration: 400
+		duration: 600
 	}, settings
 	dfd = $.Deferred()
 	pos = $(selector).offset()
 	$('html,body').animate({
 			scrollTop: pos.top + settings.offset.top
 		},
-		settings.speed,
+		settings.duration,
 		settings.easing,
 		->
 			dfd.resolve()
@@ -120,6 +125,7 @@ $.scrollTo = (selector, settings)->
 	return dfd
 
 converter = new Showdown.converter()
+#TODO do this serverside?
 
 $ ->
 	game.init()

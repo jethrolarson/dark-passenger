@@ -162,8 +162,10 @@ window.loc =
     callback: -> set 'remember',true
     maraon:
       callback: -> set 'mara', true
+      rerender: 'creeping-dream'
     curseon:
       callback: -> set 'curse', true
+      rerender: 'creeping-dream'
     curse: 
       content: """
         The curse sends the victim into a murderous rage. Bites from the cursed infect targets with [parasites](#creeping-dream_parasites) that transform parts of their bodies into hosts for imps.
