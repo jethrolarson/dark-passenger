@@ -1,6 +1,6 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
-from django.utils import simplejson
+import json as simplejson
 
 def render(rh,viewPath,data):
   rh.response.out.write(template.render("views/"+viewPath,data))

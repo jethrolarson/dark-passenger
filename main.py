@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util as webappUtil
-from django.utils import simplejson
 import util, yaml, logging, re
 
 class Index(webapp.RequestHandler):
